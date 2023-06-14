@@ -1,3 +1,6 @@
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { db } from './db/config'
+
 export const marker = [
   {
     id: 0,
@@ -35,31 +38,43 @@ export const marker = [
     position: [-33.40450441694289, -70.70741198989964]
   },
   {
-    id: 4,
+    id: 5,
     title: 'San Bernardo',
     icons: 'https://img.icons8.com/?size=512&id=7880&format=png',
     description: 'Lorem ipsum dolor sit',
     position: [-33.40450441694289, -70.70741198989964]
   },
   {
-    id: 4,
+    id: 6,
     title: 'San Bernardo',
     icons: 'https://img.icons8.com/?size=512&id=7880&format=png',
     description: 'Lorem ipsum dolor sit',
     position: [-33.40450441694289, -70.70741198989964]
   },
   {
-    id: 4,
+    id: 7,
     title: 'San Bernardo',
     icons: 'https://img.icons8.com/?size=512&id=7880&format=png',
     description: 'Lorem ipsum dolor sit',
     position: [-33.40450441694289, -70.70741198989964]
   },
   {
-    id: 4,
+    id: 8,
     title: 'San Bernardo',
     icons: 'https://img.icons8.com/?size=512&id=7880&format=png',
     description: 'Lorem ipsum dolor sit',
     position: [-33.40450441694289, -70.70741198989964]
   }
 ]
+
+export const handleClick = async () => {
+  marker.forEach(mark => {
+    save(mark)
+  })
+}
+
+const save = async (obj) => {
+  const collectionTest = collection(db, 'test')
+  const docRef = doc(collectionTest, obj.title)
+  await setDoc(docRef, obj)
+}

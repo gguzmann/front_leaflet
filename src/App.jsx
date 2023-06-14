@@ -2,15 +2,13 @@ import { useEffect } from 'react'
 import { ListaContainer } from './components/list/ListaContainer'
 import { Mapa } from './components/map/Mapa'
 import { useStore } from './store/store'
-import { marker } from './marker'
+import { cargaFS } from './utils'
 
 function App () {
   const { setLocations, locations } = useStore()
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => response.json())
-      .then(json => setLocations(marker))
+    cargaFS().then(locs => setLocations(locs))
   }, [])
 
   return (
@@ -25,7 +23,7 @@ function App () {
               <Mapa />
             </div>
           </div>
-    }
+      }
     </>
   )
 }

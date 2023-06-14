@@ -15,7 +15,7 @@ export const CardList = ({ loc }) => {
           <p className=''>{loc.description}</p>
         </div>
         <div className='p-5 basis-1/4 flex items-center justify-center'>
-          <img src={loc.icons} alt='' />
+          <img src={loc.icons} alt='' className='hidden lg:flex' />
         </div>
       </div>
       <hr />

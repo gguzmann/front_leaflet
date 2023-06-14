@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { useStore } from '../../store/store'
 import L from 'leaflet'
+import { EventsActions } from '../editar/EventsActions'
 
 export const Mapa = () => {
-  const [localtions, setLocaltions] = useState(useStore(state => state.locations))
+  const localtions = useStore(state => state.locations)
   const { setMapa } = useStore()
   return (
     <div>
@@ -17,7 +17,7 @@ export const Mapa = () => {
           localtions &&
           localtions.map((loc, i) => <CustomMarker key={i} marker={loc} />)
         }
-        <ClickTest />
+        <EventsActions />
       </MapContainer>
     </div>
 
@@ -37,12 +37,4 @@ const CustomMarker = ({ marker }) => {
       </Popup>
     </Marker>
   )
-}
-
-const ClickTest = () => {
-  useMapEvents({
-    click (e) {
-      console.log([e.latlng.lat, e.latlng.lng])
-    }
-  })
 }

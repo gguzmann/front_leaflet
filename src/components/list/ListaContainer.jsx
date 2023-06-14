@@ -13,7 +13,7 @@ export const ListaContainer = () => {
         <div className='overflow-y-scroll max-h-screen'>
           {
             locations?.map((card, i) => <CardList key={i} loc={card} />)
-        }
+          }
         </div>
       </div>
     </div>

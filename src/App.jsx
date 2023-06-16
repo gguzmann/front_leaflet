@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ListaContainer } from './components/list/ListaContainer'
 import { Mapa } from './components/map/Mapa'
 import { useStore } from './store/store'
@@ -7,13 +7,12 @@ import { ButtonsFloat } from './components/editar/ButtonsFloat'
 import { ModalEdit } from './components/editar/ModalEdit'
 
 function App () {
-  const { setLocations, locations } = useStore()
-  const [isDev, setIsDev] = useState(false)
+  const { setLocations, locations, setDev, dev } = useStore()
 
   useEffect(() => {
     const params = window.location.pathname
     const name = params.split('/')[1]
-    params.split('/')[2] === 'dev' ? setIsDev(true) : setIsDev(false)
+    params.split('/')[2] === 'dev' ? setDev(true) : setDev(false)
 
     cargaFS(name).then(locs => setLocations(locs)).catch(e => console.log('error'))
   }, [])
@@ -28,7 +27,7 @@ function App () {
             </div>
             <div className='basis-3/4'>
               <Mapa />
-              {isDev && <ButtonsFloat />}
+              {dev && <ButtonsFloat />}
             </div>
           </div>
       }

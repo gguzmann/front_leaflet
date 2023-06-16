@@ -6,23 +6,41 @@ export const ModalEdit = () => {
 
   return (
     <>
-      <div className={`modal fixed top-1/4 left-0 z-[1055] w-full h-full outline-none fade ${!modal && 'hidden'}`} id='exampleModalTwo' tabIndex='-1' role='dialog'>
-        <div className='relative w-auto pointer-events-none max-w-lg my-8 mx-auto px-4 sm:px-0' role='document'>
-          <div className='relative flex flex-col w-full pointer-events-auto bg-white border border-gray-300 rounded-lg'>
-            <div className='flex items-start justify-between p-4 border-b border-gray-300 rounded-t'>
-              <h5 className='mb-0 text-lg leading-normal'>Modal title</h5>
-              <button type='button' className='close' data-dismiss='modal' onClick={ModalClose}>&times;</button>
+      <div id='defaultModal' tabIndex='-1' aria-hidden='true' className={`fixed flex justify-center items-center right-0 top-0 z-[1050] h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 ${!modal && 'hidden'}`}>
+        <div className='relative w-full max-w-md max-h-full'>
+          <div className='relative bg-white rounded-lg shadow'>
+            <div className='flex items-center justify-between p-5 border-b rounded-t'>
+              <h3 className='text-xl font-medium text-gray-900'>
+                Location Editer {current.id}
+              </h3>
+              <button type='button' onClick={ModalClose} className='ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900' data-modal-hide='defaultModal'>
+                <svg aria-hidden='true' className='h-5 w-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fillRule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clipRule='evenodd' /></svg>
+                <span className='sr-only'>Close modal</span>
+              </button>
             </div>
-            <div className='relative flex p-4'>
-              ... {current.id}
+            <div className='space-y-6 p-6'>
+
+              <form>
+                <div className='mb-4'>
+                  <label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-900'>Name:</label>
+                  <input type='text' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' required />
+                </div>
+                <div className='mb-4'>
+                  <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-900'>Decription:</label>
+                  <input type='text' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' required />
+                </div>
+
+              </form>
+
             </div>
-            <div className='flex items-center justify-end p-4 border-t border-gray-300'>
-              <button onClick={ModalClose} type='button' className='inline-block font-normal text-center px-3 py-2 leading-normal text-base rounded cursor-pointer text-white bg-gray-600 mr-2' data-dismiss='modal'>Close</button>
-              <button type='button' className='inline-block font-normal text-center px-3 py-2 leading-normal text-base rounded cursor-pointer text-white bg-blue-600'>Save changes</button>
+            <div className='flex items-center space-x-2 rounded-b border-t border-gray-200 p-6'>
+              <button data-modal-hide='defaultModal' type='button' className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300'>I accept</button>
+              <button data-modal-hide='defaultModal' onClick={ModalClose} type='button' className='rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300'>Decline</button>
             </div>
           </div>
         </div>
       </div>
+
     </>
   )
 }

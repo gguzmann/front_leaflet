@@ -11,7 +11,7 @@ export const CardList = ({ loc }) => {
     setCurrentLoc(loc)
   }
 
-  const handleEdit = () => {
+  const handleEditClick = () => {
     setCurrentLoc(loc)
     ModalOpen(loc)
   }
@@ -30,7 +30,7 @@ export const CardList = ({ loc }) => {
           {
           currentLoc.id === loc.id && dev &&
             <div className='flex just mt-2'>
-              <button onClick={handleEdit} className='bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border hover:border-blue-400'>edit</button>
+              <button onClick={handleEditClick} className='bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border hover:border-blue-400'>edit</button>
               <button onClick={handleDelete} className='bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded border hover:border-red-400'>delete</button>
             </div>
           }

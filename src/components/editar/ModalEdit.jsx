@@ -1,9 +1,44 @@
+import { useState } from 'react'
 import { useStoreEdited } from '../../store/storeEdit'
+import { useStore } from '../../store/store'
+
+const initForm = {
+  name: '',
+  description: ''
+}
 
 export const ModalEdit = () => {
   const { modal, current } = useStoreEdited(state => ({ modal: state.modal, current: state.currentLoc }))
   const { ModalClose } = useStoreEdited()
+  const locations = useStore(state => state.locations)
+  const { setLocations } = useStore()
 
+  const [formObject, setFormObject] = useState(initForm)
+
+  const handleChangeInput = (e) => {
+    const obj = {
+      ...formObject,
+      [e.target.name]: e.target.value
+    }
+    setFormObject(obj)
+    console.log(obj)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLocations(locations.map(x => {
+      if (x.id === current.id) {
+        return {
+          ...current,
+          title: formObject.name !== '' ? formObject.name : current.title,
+          description: formObject.description
+        }
+      }
+      return x
+    }))
+    setFormObject(initForm)
+    ModalClose()
+  }
   return (
     <>
       <div id='defaultModal' tabIndex='-1' aria-hidden='true' className={`fixed flex justify-center items-center right-0 top-0 z-[1050] h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 ${!modal && 'hidden'}`}>
@@ -18,25 +53,26 @@ export const ModalEdit = () => {
                 <span className='sr-only'>Close modal</span>
               </button>
             </div>
-            <div className='space-y-6 p-6'>
+            <form onSubmit={handleSubmit}>
 
-              <form>
+              <div className='space-y-6 p-6'>
+
                 <div className='mb-4'>
                   <label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-900'>Name:</label>
-                  <input type='text' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' required />
+                  <input type='text' name='name' onChange={handleChangeInput} value={formObject.name} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' />
                 </div>
                 <div className='mb-4'>
                   <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-900'>Decription:</label>
-                  <input type='text' id='email' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' required />
+                  <input type='text' name='description' onChange={handleChangeInput} value={formObject.description} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder='' />
                 </div>
 
-              </form>
+              </div>
+              <div className='flex items-center space-x-2 rounded-b border-t border-gray-200 p-6'>
+                <button data-modal-hide='defaultModal' type='submit' className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300'>I accept</button>
+                <button data-modal-hide='defaultModal' onClick={ModalClose} type='button' className='rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300'>Decline</button>
+              </div>
+            </form>
 
-            </div>
-            <div className='flex items-center space-x-2 rounded-b border-t border-gray-200 p-6'>
-              <button data-modal-hide='defaultModal' type='button' className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300'>I accept</button>
-              <button data-modal-hide='defaultModal' onClick={ModalClose} type='button' className='rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-300'>Decline</button>
-            </div>
           </div>
         </div>
       </div>

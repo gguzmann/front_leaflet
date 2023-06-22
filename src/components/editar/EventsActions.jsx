@@ -5,7 +5,7 @@ import { useStore } from '../../store/store'
 
 export const EventsActions = () => {
   const action = useStoreEdited(state => state.action)
-  const { setAction, ModalOpen, setCurrentLoc } = useStoreEdited()
+  const { setAction, setCurrentLoc } = useStoreEdited()
   const { locations, setLocations } = useStore()
 
   useMapEvents({
@@ -29,7 +29,6 @@ export const EventsActions = () => {
 
           setLocations([...locations, obj])
           setAction(actionType.NONE)
-          ModalOpen()
           setCurrentLoc(obj)
           break
         case actionType.LAYER:

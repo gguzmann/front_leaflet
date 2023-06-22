@@ -1,7 +1,7 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import { useStore } from '../../store/store'
-import L from 'leaflet'
 import { EventsActions } from '../editar/EventsActions'
+import { CustomMarker } from './CustomMarker'
 
 export const Mapa = () => {
   const localtions = useStore(state => state.locations)
@@ -21,20 +21,5 @@ export const Mapa = () => {
       </MapContainer>
     </div>
 
-  )
-}
-
-const CustomMarker = ({ marker }) => {
-  const customIcon = new L.Icon({
-    iconUrl: marker.icons,
-    iconSize: [35, 35]
-  })
-
-  return (
-    <Marker position={marker.position} icon={customIcon}>
-      <Popup>
-        {marker.title} <br /> {marker.description}.
-      </Popup>
-    </Marker>
   )
 }

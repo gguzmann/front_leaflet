@@ -4,16 +4,29 @@ import { Mapa } from './components/map/Mapa'
 import { useStore } from './store/store'
 import { cargaFS } from './utils'
 import { ButtonsFloat } from './components/editar/ButtonsFloat'
+import { useLocation } from 'wouter'
+import { Settings } from './components/editar/Settings'
+import { useSetting } from './store/storeSettings'
 
 function App () {
   const { setLocations, setDev, dev } = useStore()
+  const [params, setLocation] = useLocation()
+  const { setSettings, setName } = useSetting()
 
   useEffect(() => {
-    const params = window.location.pathname
     const name = params.split('/')[1]
+    setName(name)
     params.split('/')[2] === 'dev' ? setDev(true) : setDev(false)
 
-    cargaFS(name).then(locs => setLocations(locs)).catch(e => console.log('error'))
+    cargaFS(name).then(locs => {
+      if (locs) {
+        setLocations(locs[0])
+        setSettings(locs[1])
+        console.log(locs[1])
+      } else {
+        setLocation('/')
+      }
+    }).catch(e => console.log('error'))
   }, [])
 
   return (
@@ -27,6 +40,7 @@ function App () {
           {dev && <ButtonsFloat />}
         </div>
       </div>
+      <Settings />
     </>
   )
 }

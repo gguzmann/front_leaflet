@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getFirestore, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
 
@@ -23,3 +23,19 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
+
+export const addLocation = async (newLocation, id) => {
+  const collect = collection(db, 'test')
+  const docRef = doc(collect, id)
+  await setDoc(docRef, newLocation)
+}
+
+export const deleteLocation = async (id) => {
+  await deleteDoc(doc(db, 'test', id))
+}
+
+export const saveSettings = async (settings) => {
+  const collectionSetting = collection(db, 'test')
+  const docRef = doc(collectionSetting, 'config')
+  await setDoc(docRef, settings)
+}

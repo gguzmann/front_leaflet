@@ -4,7 +4,7 @@ import { EventsActions } from '../editar/EventsActions'
 import { CustomMarker } from './CustomMarker'
 
 export const Mapa = () => {
-  const localtions = useStore(state => state.locations)
+  const locations = useStore(state => state.locations)
   const { setMapa } = useStore()
   return (
     <div>
@@ -14,8 +14,8 @@ export const Mapa = () => {
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
         {
-          localtions &&
-          localtions.map((loc, i) => <CustomMarker key={i} marker={loc} />)
+          locations.length > 0 &&
+          locations.map((loc, i) => <CustomMarker key={i} marker={loc} />)
         }
         <EventsActions />
       </MapContainer>

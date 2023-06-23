@@ -1,6 +1,6 @@
 import { useMapEvents } from 'react-leaflet'
 import { useStoreEdited } from '../../store/storeEdit'
-import { actionType } from '../../utils'
+import { actionType, uid } from '../../utils'
 import { useStore } from '../../store/store'
 
 export const EventsActions = () => {
@@ -14,7 +14,7 @@ export const EventsActions = () => {
       console.log(position)
       console.log(action)
       const obj = {
-        id: locations.length,
+        id: uid(),
         title: '',
         icons: 'https://img.icons8.com/?size=512&id=7880&format=png',
         description: '',

@@ -13,8 +13,11 @@ export const useSetting = create((set) => ({
   draggable: true,
   minZoom: 0,
   maxZoom: 13,
+  layer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  setLayer: (value) => set(state => ({ layer: value })),
   setSettings: (value) => set(state => ({
     title: value.title,
-    color: value.color
+    color: value.color,
+    layer: value.layer
   }))
 }))

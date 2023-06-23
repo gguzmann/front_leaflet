@@ -3,6 +3,7 @@ import { Route, Switch } from 'wouter'
 import { Mapa } from './components/map/Mapa'
 import App from './App'
 import { Login } from './components/login/Login'
+import { Home } from './components/home/Home'
 
 export const Router = () => {
   return (
@@ -12,7 +13,7 @@ export const Router = () => {
       <Route path='/login' component={Login} />
       <Route path='/:name' component={App} />
       <Route path='/:name/dev' component={App} />
-      <Route path='/' component={Mapa} />
+      <Route path='/' component={Home} />
       <Route component={Mapa} />
     </Switch>
   )

@@ -19,6 +19,7 @@ function App () {
     params.split('/')[2] === 'dev' ? setDev(true) : setDev(false)
 
     cargaFS(name).then(locs => {
+      console.log({ locs })
       if (locs) {
         setLocations(locs[0])
         setSettings(locs[1])

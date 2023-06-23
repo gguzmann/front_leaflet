@@ -58,7 +58,7 @@ export const ButtonsFloat = () => {
           </div>
 
         </div>
-        <button onClick={hanleHover} type='button' data-dial-toggle='speed-dial-menu-square' aria-controls='speed-dial-menu-square' aria-expanded='false' className={`flex items-center justify-center text-white ${color || 'bg-blue-700'} rounded-lg w-14 h-14 hover:bg-blue-800`}>
+        <button onClick={hanleHover} type='button' data-dial-toggle='speed-dial-menu-square' aria-controls='speed-dial-menu-square' aria-expanded='false' className={`flex items-center justify-center text-white ${color || 'bg-blue-700'} rounded-lg w-14 h-14 hover:bg-opacity-80`}>
           <svg aria-hidden='true' className='w-8 h-8 transition-transform ' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path d='M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z' /></svg>
 
           <span className='sr-only'>Open actions menu</span>

@@ -24,8 +24,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 
-export const addLocation = async (newLocation, id) => {
-  const collect = collection(db, 'test')
+export const addLocation = async (newLocation, id, nameMap) => {
+  const collect = collection(db, nameMap)
   const docRef = doc(collect, id)
   await setDoc(docRef, newLocation)
 }
@@ -38,4 +38,8 @@ export const saveSettings = async (settings) => {
   const collectionSetting = collection(db, 'test')
   const docRef = doc(collectionSetting, 'config')
   await setDoc(docRef, settings)
+}
+
+export const newMap = async (name, config) => {
+  await setDoc(doc(db, name, 'config'), config)
 }

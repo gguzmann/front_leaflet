@@ -5,7 +5,7 @@ import { saveSettings } from '../../db/config'
 
 export const Settings = () => {
   const [loading, setLoading] = useState(false)
-  const { modalSetting, closeSetting, color, title } = useSetting()
+  const { modalSetting, closeSetting, color, title, name } = useSetting()
 
   const handleSaveSetting = async () => {
     console.log(title, color)
@@ -13,7 +13,7 @@ export const Settings = () => {
     await saveSettings({
       title,
       color
-    })
+    }, name)
     setLoading(false)
     closeSetting()
   }

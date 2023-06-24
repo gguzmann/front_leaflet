@@ -34,8 +34,8 @@ export const deleteLocation = async (id) => {
   await deleteDoc(doc(db, 'test', id))
 }
 
-export const saveSettings = async (settings) => {
-  const collectionSetting = collection(db, 'test')
+export const saveSettings = async (settings, nameMap) => {
+  const collectionSetting = collection(db, nameMap)
   const docRef = doc(collectionSetting, 'config')
   await setDoc(docRef, settings)
 }

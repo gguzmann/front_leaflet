@@ -7,9 +7,9 @@ export const LayerSettings = () => {
   const { layer, setLayer } = useSetting()
 
   return (
-    <div className=''>
-      <h3 className='text-xl font-medium text-gray-900 mb-6'>
-        Layer Settings
+    <div className='py-5'>
+      <h3 className='text-xl font-medium text-gray-900 mb-6 text-center'>
+        Select a layer:
       </h3>
       <div className='flex flex-wrap gap-5 justify-center pb-5'>
         {

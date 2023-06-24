@@ -8,7 +8,7 @@ export const useSetting = create((set) => ({
   closeSetting: () => set(state => ({ modalSetting: false })),
   title: '',
   setTitle: (value) => set(state => ({ title: value })),
-  color: null,
+  color: 'bg-sky-700',
   setColor: (value) => set(state => ({ color: value })),
   draggable: true,
   minZoom: 0,

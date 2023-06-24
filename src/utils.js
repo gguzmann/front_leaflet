@@ -44,11 +44,11 @@ export const uid = () => {
 
 export const colors = [
   {
+    title: 'blue',
+    color: 'bg-sky-700'
+  }, {
     title: 'red',
     color: 'bg-red-700'
-  }, {
-    title: 'blue',
-    color: 'bg-blue-700'
   }, {
     title: 'green',
     color: 'bg-green-700'

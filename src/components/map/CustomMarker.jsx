@@ -85,7 +85,7 @@ export const CustomMarker = ({ marker }) => {
                           ? <div className=''>
                             <p className='text-lg font-bold '>{marker.title}</p>
                             <p className=''>{marker.description}</p>
-                          </div>
+                            </div>
                           : <div>
                             <form onSubmit={handleSubmit}>
                               <input autoFocus onChange={handleChangeInput} type='text' className='text-lg' name='title' id='title' placeholder={marker.title !== '' ? marker.title : 'title'} />
@@ -93,7 +93,7 @@ export const CustomMarker = ({ marker }) => {
                               <input onChange={handleChangeInput} type='text' className='text-lg' name='description' id='description' placeholder={marker.description !== '' ? marker.description : 'description'} />
                               <input type='submit' className='hidden' id='' />
                             </form>
-                          </div>
+                            </div>
                     }
 
                     <div className='p-5 basis-1/4 flex items-center justify-center'>

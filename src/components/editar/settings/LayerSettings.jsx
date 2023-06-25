@@ -15,7 +15,7 @@ export const LayerSettings = () => {
         {
           layersTile.map((x, i) => (
             <div key={i} className={`w-1/4 border cursor-pointer hover:outline hover:outline-yellow-500 p-1 ${layer === x.url && 'outline outline-yellow-500'}`} onClick={() => setLayer(x.url)}>
-              <MapContainer style={{ height: '100px', width: '100px' }} center={[-45.5712, -72.0685]} zoom={10} scrollWheelZoom={false} zoomControl={false} dragging={false}>
+              <MapContainer style={{ minHeight: '50px', minWidth: '50px' }} center={[-45.5712, -72.0685]} zoom={10} scrollWheelZoom={false} zoomControl={false} dragging={false}>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url={x.url}

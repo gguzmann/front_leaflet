@@ -8,6 +8,7 @@ import logo from '../../assets/logo.png'
 export const CreateMap = () => {
   const [count, setCount] = useState(0)
   const [, setLocation] = useLocation()
+  const [error, setError] = useState(false)
 
   const { color, title, layer, setLayer } = useSetting()
 
@@ -16,7 +17,11 @@ export const CreateMap = () => {
   }, [setLayer])
 
   const handleClick = async () => {
-    if (title === '') return false
+    if (title === '') {
+      setError(true)
+      return false
+    }
+    setError(false)
     console.log(color, title, layer)
     if (count === 2) {
       await newMap(title, {
@@ -29,7 +34,7 @@ export const CreateMap = () => {
 
   return (
     <>
-      <div id='defaultModal' tabIndex='-1' aria-hidden='true' className='p-28 fixed flex justify-center items-start right-0 top-0 z-[1050] h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden md:inset-0 '>
+      <div id='defaultModal' tabIndex='-1' aria-hidden='true' className='py-28 px-4 fixed flex justify-center items-start right-0 top-0 z-[1050] h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden md:inset-0 '>
         <div className='relative w-full max-w-lg max-h-full'>
           <div className='relative bg-white rounded-lg shadow'>
             <div className='flex items-center justify-center p-5'>
@@ -41,6 +46,8 @@ export const CreateMap = () => {
               <hr />
               {count === 0 && <GeneralSettings />}
               {count === 1 && <LayerSettings />}
+
+              {error && title === '' && <p className='bg-red-500 text-white text-center my-3 p-2'>Debe completar nombre de mapa</p>}
               <button onClick={handleClick} className={`flex gap-3 items-center justify-center ${color || 'bg-sky-700'} hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded w-full`}>
                 <div>
                   {count === 2 ? 'Create Map' : 'Continue'}

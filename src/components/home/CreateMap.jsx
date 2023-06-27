@@ -14,6 +14,7 @@ export const CreateMap = () => {
   const { color, title, layer, setLayer } = useSetting()
 
   useEffect(() => {
+    console.log('etasda asdas'.split(' ').join('_'))
     setLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
   }, [setLayer])
 
@@ -26,7 +27,7 @@ export const CreateMap = () => {
     console.log(color, title, layer)
     if (count === 2) {
       setLoading(true)
-      await newMap(title, {
+      await newMap(title.split(' ').join('_'), {
         color, title, layer
       })
       setLocation('/' + title + '/dev')

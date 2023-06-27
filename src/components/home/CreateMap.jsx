@@ -30,7 +30,7 @@ export const CreateMap = () => {
       await newMap(title.split(' ').join('_'), {
         color, title, layer
       })
-      setLocation('/' + title + '/dev')
+      setLocation('/' + title.split(' ').join('_') + '/dev')
       setLoading(false)
     }
     setCount(count + 1)

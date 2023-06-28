@@ -12,11 +12,7 @@ export const ListaContainer = () => {
     <div>
       <div className='bg-white shadow-md'>
         <div className={`${color || 'bg-sky-500'} p-5 text-3xl font-bold text-slate-200`}>
-          {setting === 'locations' && title}
-          {setting === 'config' && 'Settings'}
-          {setting === 'link' && 'Share'}
-          {setting === 'layer' && 'Layer'}
-          {setting === 'centerPosition' && 'Centered Position'}
+          {title}
 
         </div>
         <div className='overflow-y-scroll max-h-screen'>

@@ -17,8 +17,8 @@ export const cargaFS = async (path) => {
       arr.push({ ...data, id: element.id })
     }
   })
-  console.log(arr)
-  return [arr, config]
+  console.log('arr', arr)
+  return arr.length > 0 ? [arr, config] : [[], config]
   // if (arr.length > 0) { return [arr, config] }
   // return false
 }

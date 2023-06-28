@@ -15,7 +15,7 @@ export const EventsActions = () => {
     zoomend: (e) => {
       setting === 'centerPosition' && setCenterPosition([map.getCenter().lat, map.getCenter().lng, map.getZoom()])
     },
-    dragend: (e) => {
+    drag: (e) => {
       setting === 'centerPosition' && setCenterPosition([map.getCenter().lat, map.getCenter().lng, map.getZoom()])
     },
     click (e) {

@@ -11,7 +11,7 @@ export const Mapa = () => {
 
   return (
     <div>
-      <MapContainer className='map' center={[center[0], center[1]]} zoomControl={false} zoom={center[2]} whenReady={instance => setMapa(instance)}>
+      <MapContainer className='map' center={[center[0], center[1]]} zoomControl zoom={center[2]} whenReady={instance => setMapa(instance)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={layer}
@@ -22,7 +22,7 @@ export const Mapa = () => {
         </div>
 
         {
-          locations.length > 0 &&
+          locations?.length > 0 &&
           locations.map((loc, i) => <CustomMarker key={i} marker={loc} />)
         }
         <EventsActions />

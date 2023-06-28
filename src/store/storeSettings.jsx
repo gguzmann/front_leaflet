@@ -23,6 +23,6 @@ export const useSetting = create((set) => ({
     title: value.title,
     color: value.color,
     layer: value.layer,
-    center: value.center
+    center: value.center || state.center
   }))
 }))

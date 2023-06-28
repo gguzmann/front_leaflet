@@ -37,7 +37,7 @@ export const deleteLocation = async (id) => {
 export const saveSettings = async (settings, nameMap) => {
   const collectionSetting = collection(db, nameMap)
   const docRef = doc(collectionSetting, 'config')
-  await setDoc(docRef, settings)
+  await setDoc(docRef, settings, { merge: true })
 }
 
 export const newMap = async (name, config) => {

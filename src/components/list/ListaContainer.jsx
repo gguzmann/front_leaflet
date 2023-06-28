@@ -1,22 +1,32 @@
 import React from 'react'
-import { useStore } from '../../store/store'
-import { CardList } from './CardList'
 import { useSetting } from '../../store/storeSettings'
+import { CardContainer } from './CardContainer'
+import { SettingLink } from '../editar/actions/share/SettingLink'
+import { SettingConfig } from '../editar/actions/setting/SettingConfig'
+import { SettingLayer } from '../editar/actions/layers/SettingLayer'
+import { SettingCenterPosition } from '../editar/actions/centerPosition/SettingCenterPosition'
 
 export const ListaContainer = () => {
-  const locations = useStore(state => state.locations)
-  const { color, title } = useSetting()
+  const { color, title, setting } = useSetting()
   return (
     <div>
       <div className='bg-white shadow-md'>
         <div className={`${color || 'bg-sky-500'} p-5 text-3xl font-bold text-slate-200`}>
-          {title}
+          {setting === 'locations' && title}
+          {setting === 'config' && 'Settings'}
+          {setting === 'link' && 'Share'}
+          {setting === 'layer' && 'Layer'}
+          {setting === 'centerPosition' && 'Centered Position'}
+
         </div>
         <div className='overflow-y-scroll max-h-screen'>
-          {
-            locations.length > 0 &&
-            locations?.map((card, i) => <CardList key={i} loc={card} />)
-          }
+
+          {setting === 'locations' && <CardContainer />}
+          {setting === 'config' && <SettingConfig />}
+          {setting === 'layer' && <SettingLayer />}
+          {setting === 'centerPosition' && <SettingCenterPosition />}
+          {setting === 'link' && <div className='p-2 min-h-screen'><SettingLink /></div>}
+
         </div>
       </div>
     </div>

@@ -27,10 +27,10 @@ export const CreateMap = () => {
     console.log(color, title, layer)
     if (count === 2) {
       setLoading(true)
-      await newMap(title.split(' ').join('_'), {
+      await newMap(title.split(' ').join('_').toLowerCase(), {
         color, title, layer
       })
-      setLocation('/' + title.split(' ').join('_') + '/dev')
+      setLocation('/' + title.split(' ').join('_').toLowerCase() + '/dev')
       setLoading(false)
     }
     setCount(count + 1)

@@ -9,7 +9,7 @@ import { Settings } from './components/editar/Settings'
 import { useSetting } from './store/storeSettings'
 
 function App () {
-  const { setLocations, setDev, dev } = useStore()
+  const { setLocations, setDev, dev, locations } = useStore()
   const [params, setLocation] = useLocation()
   const { setSettings, setName } = useSetting()
 
@@ -37,7 +37,7 @@ function App () {
           <ListaContainer />
         </div>
         <div className='basis-3/4'>
-          <Mapa />
+          {locations.length > 0 && <Mapa />}
           {dev && <ButtonsFloat />}
         </div>
       </div>

@@ -9,7 +9,7 @@ export const GeneralSettings = () => {
   }
 
   return (
-    <div className='py-5'>
+    <div className=''>
       <h3 className='text-xl font-medium text-gray-900 mb-6'>
         General Settings
       </h3>

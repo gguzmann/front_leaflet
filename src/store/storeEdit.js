@@ -7,6 +7,8 @@ export const useStoreEdited = create((set) => ({
   currentLoc: {},
   setCurrentLoc: (value) => set(state => ({ currentLoc: value })),
   action: actionType.NONE,
-  setAction: (value) => set(state => ({ ...state, action: value }))
+  setAction: (value) => set(state => ({ ...state, action: value })),
+  centerPosition: [],
+  setCenterPosition: (value) => set(state => ({ centerPosition: value }))
 
 }))

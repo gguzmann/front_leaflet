@@ -15,7 +15,7 @@ export const CustomMarker = ({ marker }) => {
   const { mapa, dev, locations, setLocations } = useStore()
   const { setCurrentLoc, currentLoc } = useStoreEdited()
   const [edited, setEdited] = useState(marker.title === '')
-  const { name } = useSetting()
+  const { name, setSetting } = useSetting()
 
   const customIcon = new L.Icon({
     iconUrl: marker.icons,
@@ -36,6 +36,7 @@ export const CustomMarker = ({ marker }) => {
   const handleClick = () => {
     mapa.target.flyTo(marker.position, mapa.target.getZoom())
     setCurrentLoc(marker)
+    setSetting('locations')
   }
 
   const handleDelete = () => {
@@ -67,12 +68,20 @@ export const CustomMarker = ({ marker }) => {
     setEdited(false)
   }
 
+  const test = (event) => {
+    if (event.target === event.currentTarget) {
+      console.log('test')
+      console.log(currentLoc)
+      setCurrentLoc({})
+    }
+  }
+
   return (
     <Marker position={marker.position} icon={customIcon} eventHandlers={{ click: (e) => handleClick() }}>
       {
             currentLoc.id === marker.id &&
               <Tooltip permanent direction='top' opacity={1} interactive>
-                <div className='p-2 w-52 '>
+                <div className='p-2 w-52' onClick={test}>
                   <div className='absolute p-3 -top-2 -right-2'>
                     <button type='button' onClick={handleClose} className='ml-auto inline-flex items-center  rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900' data-modal-hide='defaultModal'>
                       <svg aria-hidden='true' className='h-5 w-5' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fillRule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clipRule='evenodd' /></svg>
@@ -96,8 +105,8 @@ export const CustomMarker = ({ marker }) => {
                             </div>
                     }
 
-                    <div className='p-5 basis-1/4 flex items-center justify-center'>
-                      <img src={marker.icons} alt='' className='lg:flex' />
+                    <div className='py-2'>
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='lg:flex' />
                     </div>
                     {
                         currentLoc.id === marker.id && dev && !edited &&

@@ -11,7 +11,7 @@ import { useSetting } from './store/storeSettings'
 function App () {
   const { setLocations, setDev, dev } = useStore()
   const [params, setLocation] = useLocation()
-  const { setSettings, setName } = useSetting()
+  const { setSettings, setName, title } = useSetting()
 
   useEffect(() => {
     const name = params.split('/')[1]
@@ -23,7 +23,7 @@ function App () {
       if (locs) {
         setLocations(locs[0])
         setSettings(locs[1])
-        console.log(locs[1])
+        console.log('config', locs[1])
       } else {
         setLocation('/')
       }
@@ -37,7 +37,7 @@ function App () {
           <ListaContainer />
         </div>
         <div className='basis-3/4'>
-          <Mapa />
+          {title !== '' && <Mapa />}
           {dev && <ButtonsFloat />}
         </div>
       </div>

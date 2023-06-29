@@ -5,6 +5,7 @@ import { useStoreEdited } from '../../store/storeEdit'
 import { useState } from 'react'
 import { addLocation, deleteLocation } from '../../db/config'
 import { useSetting } from '../../store/storeSettings'
+import { actionType } from '../../utils'
 
 const initForm = {
   title: '',
@@ -36,7 +37,7 @@ export const CustomMarker = ({ marker }) => {
   const handleClick = () => {
     mapa.target.flyTo(marker.position, mapa.target.getZoom())
     setCurrentLoc(marker)
-    setSetting('locations')
+    setSetting(actionType.locations)
   }
 
   const handleDelete = () => {
@@ -94,7 +95,7 @@ export const CustomMarker = ({ marker }) => {
                           ? <div className=''>
                             <p className='text-lg font-bold '>{marker.title}</p>
                             <p className=''>{marker.description}</p>
-                            </div>
+                          </div>
                           : <div>
                             <form onSubmit={handleSubmit}>
                               <input autoFocus onChange={handleChangeInput} type='text' className='text-lg' name='title' id='title' placeholder={marker.title !== '' ? marker.title : 'title'} />
@@ -102,7 +103,7 @@ export const CustomMarker = ({ marker }) => {
                               <input onChange={handleChangeInput} type='text' className='text-lg' name='description' id='description' placeholder={marker.description !== '' ? marker.description : 'description'} />
                               <input type='submit' className='hidden' id='' />
                             </form>
-                            </div>
+                          </div>
                     }
 
                     <div className='py-2'>

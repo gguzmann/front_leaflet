@@ -1,15 +1,11 @@
-import { useStoreEdited } from '../../../../store/storeEdit'
 import { useSetting } from '../../../../store/storeSettings'
 import { locationSVG } from '../../../../svg'
-import { actionType } from '../../../../utils'
 
-export const ButtonLocation = () => {
+export const ButtonLocation = ({ action }) => {
   const { setSetting } = useSetting()
-  const { setAction } = useStoreEdited()
 
   const handleClick = () => {
-    setAction(actionType.LOCATION)
-    setSetting('locations')
+    setSetting(action)
   }
 
   return (

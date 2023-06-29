@@ -6,12 +6,12 @@ import { useSetting } from '../../store/storeSettings'
 
 export const Mapa = () => {
   const locations = useStore(state => state.locations)
-  const { setMapa } = useStore()
-  const { layer, setting, center } = useSetting()
+  const { setMapa, dev } = useStore()
+  const { layer, setting, center, zoomControl, draggin } = useSetting()
 
   return (
     <div>
-      <MapContainer className='map' center={[center[0], center[1]]} zoomControl zoom={center[2]} whenReady={instance => setMapa(instance)}>
+      <MapContainer className='map' center={[center[0], center[1]]} dragging={dev || draggin} scrollWheelZoom={dev || zoomControl} zoomControl={dev || zoomControl} zoom={center[2]} whenReady={instance => setMapa(instance)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={layer}

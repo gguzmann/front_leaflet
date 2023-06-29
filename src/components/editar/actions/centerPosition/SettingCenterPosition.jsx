@@ -6,11 +6,12 @@ import { useStore } from '../../../../store/store'
 
 export const SettingCenterPosition = () => {
   const [loading, setLoading] = useState(false)
-  const { color, center, name } = useSetting()
+  const { color, center, name, setCenter } = useSetting()
   const { centerPosition, setCenterPosition } = useStoreEdited()
   const { mapa } = useStore()
 
   const handleSaveSetting = async () => {
+    setCenter([centerPosition[0], centerPosition[1], centerPosition[2]])
     setLoading(true)
     await saveSettings({
       center: centerPosition.length > 0 ? centerPosition : center
@@ -20,7 +21,7 @@ export const SettingCenterPosition = () => {
 
   const handleRestablecer = () => {
     setCenterPosition(center)
-    mapa.target.flyTo([center[0], center[1], center[2]])
+    mapa.target.flyTo([center[0], center[1]], center[2])
   }
   return (
 

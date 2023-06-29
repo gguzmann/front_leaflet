@@ -22,10 +22,14 @@ export const cargaFS = async (path) => {
   // return false
 }
 export const actionType = {
-  NONE: 'none',
-  LOCATION: 'location',
-  CONFIG: 'config',
-  LAYER: 'layer'
+  none: 'none',
+  locations: 'locations',
+  config: 'config',
+  layer: 'layer',
+  centerPosition: 'centerPosition',
+  newLocation: 'newLocation',
+  editLocation: 'editLocation',
+  link: 'link'
 }
 
 export const buttonsEvents = [

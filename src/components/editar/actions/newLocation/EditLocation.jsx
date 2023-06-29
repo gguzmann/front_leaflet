@@ -1,32 +1,39 @@
 import { useState } from 'react'
-import { useSetting } from '../../../../store/storeSettings'
-import { GeneralSettings } from '../../settings/GeneralSettings'
-import { saveSettings } from '../../../../db/config'
 import { useStoreEdited } from '../../../../store/storeEdit'
+import { useSetting } from '../../../../store/storeSettings'
 
-export const SettingConfig = () => {
+export const EditLocation = () => {
+  const { setCurrentLoc, currentLoc } = useStoreEdited()
   const [loading, setLoading] = useState(false)
-  const { centerPosition } = useStoreEdited()
-
-  const { color, title, name, center, draggin, zoomControl } = useSetting()
-
-  const handleSaveSetting = async () => {
-    console.log(title, color)
-    setLoading(true)
-    await saveSettings({
-      title,
-      color,
-      center: centerPosition.length > 0 ? centerPosition : center,
-      draggin,
-      zoomControl
-    }, name)
-    setLoading(false)
-  }
+  const { color } = useSetting()
 
   return (
     <div className='p-3 min-h-screen'>
-      <GeneralSettings />
-      <button onClick={handleSaveSetting} className={`flex gap-3 items-center justify-center ${color || 'bg-sky-700'} hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded w-full`}>
+      <h3 className='text-xl font-medium text-gray-900 mb-6'>
+        Edit Location
+      </h3>
+      <form>
+        <div className='mb-4'>
+          <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='username'>
+            Title
+          </label>
+          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' id='title' type='text' placeholder='title' />
+        </div>
+
+        <div className='mb-4'>
+          <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='username'>
+            Description
+          </label>
+          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' id='description' type='text' placeholder='description' />
+        </div>
+
+        <input type='submit' className='hidden' id='' />
+      </form>
+      <div className='py-2'>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='lg:flex' />
+      </div>
+
+      <button className={`flex gap-3 items-center justify-center ${color || 'bg-sky-700'} hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded w-full`}>
         <div>
           Save Settings
         </div>

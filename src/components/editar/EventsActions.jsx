@@ -5,24 +5,21 @@ import { useStore } from '../../store/store'
 import { useSetting } from '../../store/storeSettings'
 
 export const EventsActions = () => {
-  const action = useStoreEdited(state => state.action)
-  const { setAction, setCurrentLoc, setCenterPosition } = useStoreEdited()
+  const { setCurrentLoc, setCenterPosition } = useStoreEdited()
   const { locations, setLocations } = useStore()
-  const { setting } = useSetting()
+  const { setting, setSetting } = useSetting()
 
   const map = useMap()
   useMapEvents({
     zoomend: (e) => {
       setting === 'centerPosition' && setCenterPosition([map.getCenter().lat, map.getCenter().lng, map.getZoom()])
     },
-    drag: (e) => {
+    dragend: (e) => {
       setting === 'centerPosition' && setCenterPosition([map.getCenter().lat, map.getCenter().lng, map.getZoom()])
     },
     click (e) {
       const position = [e.latlng.lat, e.latlng.lng]
       // const position = [map.getCenter().lat, map.getCenter().lng]
-      console.log(position)
-      console.log(action)
       const obj = {
         id: uid(),
         title: '',
@@ -30,16 +27,15 @@ export const EventsActions = () => {
         description: '',
         position
       }
-      switch (action) {
-        case actionType.NONE:
+      switch (setting) {
+        case actionType.none:
           break
-        case actionType.CONFIG:
+        case actionType.config:
           break
-        case actionType.LOCATION:
-
+        case actionType.newLocation:
           setLocations([...locations, obj])
-          setAction(actionType.NONE)
           setCurrentLoc(obj)
+          setSetting(actionType.editLocation)
           break
         case actionType.LAYER:
           break

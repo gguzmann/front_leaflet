@@ -5,7 +5,6 @@ import { useStore } from './store/store'
 import { cargaFS } from './utils'
 import { ButtonsFloat } from './components/editar/ButtonsFloat'
 import { useLocation } from 'wouter'
-import { Settings } from './components/editar/Settings'
 import { useSetting } from './store/storeSettings'
 
 function App () {
@@ -32,16 +31,18 @@ function App () {
 
   return (
     <>
-      <div className='flex flex-row max-h-screen overflow-hidden bg-white'>
-        <div className='basis-1/4 shadow-4xl p-1'>
-          <ListaContainer />
+      {
+      title !== '' &&
+        <div className='flex flex-row max-h-screen overflow-hidden bg-white'>
+          <div className='basis-1/4 shadow-4xl p-1'>
+            <ListaContainer />
+          </div>
+          <div className='basis-3/4'>
+            <Mapa />
+            {dev && <ButtonsFloat />}
+          </div>
         </div>
-        <div className='basis-3/4'>
-          {title !== '' && <Mapa />}
-          {dev && <ButtonsFloat />}
-        </div>
-      </div>
-      <Settings />
+      }
     </>
   )
 }

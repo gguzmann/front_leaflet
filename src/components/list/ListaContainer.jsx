@@ -5,6 +5,9 @@ import { SettingLink } from '../editar/actions/share/SettingLink'
 import { SettingConfig } from '../editar/actions/setting/SettingConfig'
 import { SettingLayer } from '../editar/actions/layers/SettingLayer'
 import { SettingCenterPosition } from '../editar/actions/centerPosition/SettingCenterPosition'
+import { SettingNewLocation } from '../editar/actions/newLocation/SettingNewLocation'
+import { actionType } from '../../utils'
+import { EditLocation } from '../editar/actions/newLocation/EditLocation'
 
 export const ListaContainer = () => {
   const { color, title, setting } = useSetting()
@@ -17,11 +20,13 @@ export const ListaContainer = () => {
         </div>
         <div className='overflow-y-scroll max-h-screen'>
 
-          {setting === 'locations' && <CardContainer />}
-          {setting === 'config' && <SettingConfig />}
-          {setting === 'layer' && <SettingLayer />}
-          {setting === 'centerPosition' && <SettingCenterPosition />}
-          {setting === 'link' && <div className='p-2 min-h-screen'><SettingLink /></div>}
+          {setting === actionType.locations && <CardContainer />}
+          {setting === actionType.config && <SettingConfig />}
+          {setting === actionType.layer && <SettingLayer />}
+          {setting === actionType.centerPosition && <SettingCenterPosition />}
+          {setting === actionType.newLocation && <SettingNewLocation />}
+          {setting === actionType.editLocation && <EditLocation />}
+          {setting === actionType.link && <div className='p-2 min-h-screen'><SettingLink /></div>}
 
         </div>
       </div>

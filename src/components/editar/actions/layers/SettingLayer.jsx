@@ -17,13 +17,13 @@ export const SettingLayer = () => {
   }
 
   return (
-    <div className='p-3 min-h-screen'>
+    <div className='p-3 '>
 
-      <div className='h-96 overflow-y-scroll'>
+      <div className=' overflow-y-scroll' style={{ height: '80vh' }}>
         <h3 className='text-xl font-medium text-gray-900 mb-6 '>
           Select layer map:
         </h3>
-        <div className='flex flex-wrap gap-5  pb-5'>
+        <div className='flex flex-wrap gap-5 justify-center pb-5'>
           {
             layersTile.map((x, i) => (
               <div key={i} className={`  cursor-pointer hover:outline hover:outline-yellow-500 hover:outline-2 p-1 ${layer === x.url && 'outline outline-yellow-500'}`} onClick={() => setLayer(x.url)}>

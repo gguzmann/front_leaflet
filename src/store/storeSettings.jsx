@@ -14,7 +14,10 @@ export const useSetting = create((set) => ({
   setColor: (value) => set(state => ({ color: value })),
   center: [-33.461806983280546, -70.66894818450416, 12],
   setCenter: (value) => set(state => ({ center: value })),
-  draggable: true,
+  draggin: false,
+  setDraggin: (value) => set(state => ({ draggin: value })),
+  zoomControl: false,
+  setZoomControl: (value) => set(state => ({ zoomControl: value })),
   minZoom: 0,
   maxZoom: 13,
   layer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -23,6 +26,8 @@ export const useSetting = create((set) => ({
     title: value.title,
     color: value.color,
     layer: value.layer,
-    center: value.center
+    center: value.center,
+    draggin: value.draggin,
+    zoomControl: value.zoomControl
   }))
 }))

@@ -30,7 +30,7 @@ export const EditLocation = () => {
     setFormObject(obj)
     console.log(obj)
   }
-
+  console.log(currentLoc)
   const handleSubmit = (e) => {
     e.preventDefault()
     if (formObject.title === '' && currentLoc.title === '') {
@@ -42,7 +42,7 @@ export const EditLocation = () => {
       ...currentLoc,
       title: formObject.title !== '' ? formObject.title : currentLoc.title,
       description: formObject.description !== '' ? formObject.description : currentLoc.description,
-      icons: formObject.icons
+      icons: formObject.icons !== '' ? formObject.icons : 'https://img.icons8.com/?size=512&id=7880&format=png'
     }
     setLocations(locations.map(x => {
       if (x.id === currentLoc.id) {

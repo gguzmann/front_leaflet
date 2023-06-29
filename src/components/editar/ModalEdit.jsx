@@ -58,11 +58,11 @@ export const ModalEdit = () => {
               <div className='space-y-6 p-6'>
 
                 <div className='mb-4'>
-                  <label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-900'>Name:</label>
-                  <input type='text' name='name' onChange={handleChangeInput} value={formObject.name} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder={current.title} />
+                  <label htmlFor='title' className='block mb-2 text-sm font-medium text-gray-900'>Name:</label>
+                  <input type='text' name='title' onChange={handleChangeInput} value={formObject.name} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder={current.title} />
                 </div>
                 <div className='mb-4'>
-                  <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-900'>Decription:</label>
+                  <label htmlFor='description' className='block mb-2 text-sm font-medium text-gray-900'>Decription:</label>
                   <input type='text' name='description' onChange={handleChangeInput} value={formObject.description} className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' placeholder={current.description} />
                 </div>
 

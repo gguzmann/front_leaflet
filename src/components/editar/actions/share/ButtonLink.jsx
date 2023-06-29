@@ -14,7 +14,7 @@ export const ButtonLink = ({ action }) => {
   return (
     <>
       <div>
-        <button onClick={handleClick} type='button' data-tooltip-target='tooltip-share' data-tooltip-placement='left' className='p-2 flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-lg border border-gray-200hover:bg-gray-50'>
+        <button onClick={handleClick} type='button' data-tooltip-target='tooltip-share' data-tooltip-placement='left' className='p-2 flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 hover:border-2 hover:border-black bg-white rounded-lg border border-gray-200hover:bg-gray-50'>
           {linkSVG}
           <span className='sr-only'>Save</span>
         </button>

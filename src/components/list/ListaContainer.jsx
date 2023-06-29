@@ -26,7 +26,7 @@ export const ListaContainer = () => {
           {setting === actionType.centerPosition && <SettingCenterPosition />}
           {setting === actionType.newLocation && <SettingNewLocation />}
           {setting === actionType.editLocation && <EditLocation />}
-          {setting === actionType.link && <div className='p-2 min-h-screen'><SettingLink /></div>}
+          {setting === actionType.link && <SettingLink />}
 
         </div>
       </div>

@@ -11,7 +11,9 @@ export const CreateMap = () => {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const { color, title, layer, setLayer } = useSetting()
+  const {
+    color, title, layer, setLayer, draggin, zoomControl
+  } = useSetting()
 
   useEffect(() => {
     console.log('etasda asdas'.split(' ').join('_'))
@@ -28,7 +30,13 @@ export const CreateMap = () => {
     if (count === 2) {
       setLoading(true)
       await newMap(title.split(' ').join('_').toLowerCase(), {
-        color, title, layer
+        color,
+        title,
+        layer,
+        draggin,
+        zoomControl,
+        center: [-33.461806983280546, -70.66894818450416, 12]
+
       })
       setLocation('/' + title.split(' ').join('_').toLowerCase() + '/dev')
       setLoading(false)

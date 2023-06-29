@@ -30,8 +30,9 @@ export const addLocation = async (newLocation, id, nameMap) => {
   await setDoc(docRef, newLocation)
 }
 
-export const deleteLocation = async (id) => {
-  await deleteDoc(doc(db, 'test', id))
+export const deleteLocation = async (id, name) => {
+  console.log('name', name)
+  await deleteDoc(doc(db, name, id))
 }
 
 export const saveSettings = async (settings, nameMap) => {

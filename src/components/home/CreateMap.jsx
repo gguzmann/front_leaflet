@@ -3,11 +3,9 @@ import { GeneralSettings } from '../editar/settings/GeneralSettings'
 import { LayerSettings } from '../editar/settings/LayerSettings'
 import { useSetting } from '../../store/storeSettings'
 import { newMap } from '../../db/config'
-import { useLocation } from 'wouter'
 import logo from '../../assets/logo.png'
 export const CreateMap = () => {
   const [count, setCount] = useState(0)
-  const [, setLocation] = useLocation()
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -38,7 +36,9 @@ export const CreateMap = () => {
         center: [-33.461806983280546, -70.66894818450416, 12]
 
       })
-      setLocation('/' + title.split(' ').join('_').toLowerCase() + '/dev')
+      window.location.href = '/' + title.split(' ').join('_').toLowerCase() + '/dev'
+
+      // setLocation('/' + title.split(' ').join('_').toLowerCase() + '/dev')
       setLoading(false)
     }
     setCount(count + 1)

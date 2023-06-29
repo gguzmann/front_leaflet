@@ -20,6 +20,7 @@ export const EditLocation = () => {
   const [loading, setLoading] = useState(false)
   const [formObject, setFormObject] = useState(initForm)
   const [buttonIcon, setButtonIcon] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleChangeInput = (e) => {
     const obj = {
@@ -32,6 +33,10 @@ export const EditLocation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (formObject.title === '' && currentLoc.title === '') {
+      setError(true)
+      return false
+    }
     setLoading(true)
     const obj = {
       ...currentLoc,
@@ -79,6 +84,8 @@ export const EditLocation = () => {
             Title
           </label>
           <input onChange={handleChangeInput} value={formObject.title} name='title' id='title' type='text' placeholder={currentLoc.title ? currentLoc.title : 'title'} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
+          {error && <p className='text-red-500 text-xs italic'>Please choose a title.</p>}
+
         </div>
 
         <div className='mb-4'>

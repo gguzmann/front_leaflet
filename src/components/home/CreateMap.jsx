@@ -56,9 +56,12 @@ export const CreateMap = () => {
             </div>
             <div className='px-5 pb-5 '>
               <hr />
-              {count === 0 && <GeneralSettings />}
-              {count === 1 && <LayerSettings />}
+              <div className='my-5'>
 
+                {count === 0 && <GeneralSettings />}
+                {count === 1 && <LayerSettings />}
+
+              </div>
               {error && title === '' && <p className='bg-red-500 text-white text-center my-3 p-2'>Debe completar nombre de mapa</p>}
               <button onClick={handleClick} className={`flex gap-3 items-center justify-center ${color || 'bg-sky-700'} hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded w-full`}>
                 <div className='flex'>

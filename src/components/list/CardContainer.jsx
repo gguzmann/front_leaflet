@@ -30,7 +30,7 @@ export const CardContainer = () => {
       }
       {
             locations.length > 0 &&
-            locations?.map((card, i) => <CardList key={i} loc={card} />)
+            locations?.filter(x => x.title !== '').map((card, i) => <CardList key={i} loc={card} />)
           }
     </>
   )

@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
 import { useStore } from '../../store/store'
 import { EventsActions } from '../editar/EventsActions'
 import { CustomMarker } from './CustomMarker'
@@ -11,11 +11,13 @@ export const Mapa = () => {
 
   return (
     <div>
-      <MapContainer className='map' center={[center[0], center[1]]} dragging={dev || draggin} scrollWheelZoom={dev || zoomControl} zoomControl={dev || zoomControl} zoom={center[2]} whenReady={instance => setMapa(instance)}>
+      <MapContainer className='map' center={[center[0], center[1]]} dragging={dev || draggin} scrollWheelZoom={dev || zoomControl} zoomControl={false} zoom={center[2]} whenReady={instance => setMapa(instance)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={layer}
         />
+        {dev && <ZoomControl position='bottomright' />}
+
         <div className={`${setting === 'centerPosition' ? 'flex' : 'hidden'} `}>
           <div className='test2' />
           <div className='test' />
@@ -23,7 +25,7 @@ export const Mapa = () => {
 
         {
           locations?.length > 0 &&
-          locations.map((loc, i) => <CustomMarker key={i} marker={loc} />)
+          locations.filter(x => x.title !== '').map((loc, i) => <CustomMarker key={i} marker={loc} />)
         }
         <EventsActions />
       </MapContainer>

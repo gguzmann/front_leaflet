@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useStoreEdited } from '../../../../store/storeEdit'
 import { useSetting } from '../../../../store/storeSettings'
 import { addLocation } from '../../../../db/config'

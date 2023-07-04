@@ -11,12 +11,17 @@ export const SettingLink = () => {
     setCopy(true)
   }
 
+  const handleOpen = () => {
+    const link = window.location.href
+    window.open(link.slice(0, link.length - 4))
+  }
+
   return (
 
     <div className='p-2 min-h-screen'>
 
       <h3 className='text-xl font-medium text-gray-900 mb-6'>
-        Share Map
+        Sharing options
       </h3>
 
       <button onClick={handleCopy} className='flex flex-wrap gap-3 items-center justify-center border-2 border-black bg-white hover:border-slate-500 hover:text-slate-500 font-bold py-2 rounded w-full'>
@@ -25,9 +30,12 @@ export const SettingLink = () => {
         </div>
       </button>
 
-      <div className='flex justify-center'>
-        <button onClick={handleCopy} className={`my-2 ${color || 'bg-sky-700'} bg-opacity-80 text-white font-bold py-2 px-4 rounded w-1/2`}>
+      <div className='flex justify-center gap-3'>
+        <button onClick={handleCopy} className={`my-2 ${color || 'bg-sky-700'} bg-opacity-80 text-white font-bold py-2 px-4 rounded w-20`}>
           {copy ? 'copied' : <i className='far fa-clone' />}
+        </button>
+        <button onClick={handleOpen} className={`my-2 ${color || 'bg-sky-700'} bg-opacity-80 text-white font-bold py-2 px-4 rounded w-20`}>
+          Go
         </button>
       </div>
 

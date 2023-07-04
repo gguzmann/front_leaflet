@@ -19,7 +19,7 @@ function App () {
 
     cargaFS(name).then(locs => {
       console.log({ locs })
-      if (locs) {
+      if (locs[1]) {
         setLocations(locs[0])
         setSettings(locs[1])
         console.log('config', locs[1])

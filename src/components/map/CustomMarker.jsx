@@ -48,10 +48,14 @@ export const CustomMarker = ({ marker }) => {
                       <p className=''>{marker.description}</p>
                     </div>
 
-                    <div className='py-2'>
+                    {/* <div className='py-2'>
                       <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='lg:flex' />
+                    </div> */}
+                    <div className=''>
+                      <iframe
+                        src='https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=buenos+aires&amp;sll=37.0625,-95.677068&amp;sspn=38.638819,80.859375&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Buenos+Aires,+Argentina&amp;z=11&amp;ll=-34.603723,-58.381593&amp;output=embed'
+                      />
                     </div>
-
                   </div>
                 </div>
               </Tooltip>

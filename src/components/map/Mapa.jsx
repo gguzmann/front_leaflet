@@ -3,6 +3,7 @@ import { useStore } from '../../store/store'
 import { EventsActions } from '../editar/EventsActions'
 import { CustomMarker } from './CustomMarker'
 import { useSetting } from '../../store/storeSettings'
+import { UserContainer } from '../user/UserContainer'
 
 export const Mapa = () => {
   const locations = useStore(state => state.locations)
@@ -16,13 +17,13 @@ export const Mapa = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={layer}
         />
-        {dev && <ZoomControl position='bottomright' />}
+        {zoomControl && <ZoomControl position='bottomright' />}
 
         <div className={`${setting === 'centerPosition' ? 'flex' : 'hidden'} `}>
           <div className='test2' />
           <div className='test' />
         </div>
-
+        <UserContainer />
         {
           locations?.length > 0 &&
           locations.filter(x => x.title !== '').map((loc, i) => <CustomMarker key={i} marker={loc} />)

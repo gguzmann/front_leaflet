@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { UserModalRegister } from './userModalRegister'
+import { UserModalRegister } from './UserModalRegister'
 import { UserModalLogin } from './UserModalLogin'
 import { loginGoogle2 } from '../../db/config'
 import { useAuth } from '../../store/auth'

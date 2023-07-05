@@ -4,7 +4,7 @@ import { UserModalLogin } from './UserModalLogin'
 import { loginGoogle2 } from '../../db/config'
 import { useAuth } from '../../store/auth'
 
-export const UserModal = ({ open, setOpen }) => {
+export const UserModalContainer = ({ open, setOpen }) => {
   const [showSignUp, setShowSignUp] = useState(false)
 
   const { setLogin } = useAuth()

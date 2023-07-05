@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useSetting } from '../../store/storeSettings'
-import { UserModal } from './userModal'
 import { useAuth } from '../../store/auth'
 import { logout } from '../../db/config'
+import { UserModalContainer } from './UserModalContainer'
 
 export const UserContainer = () => {
   const { user, email, setLogin } = useAuth()
@@ -30,7 +30,7 @@ export const UserContainer = () => {
         !user
           ? <button onClick={handleOpenLogin} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-opacity-70`}>
             Login
-            </button>
+          </button>
           : <>
             <button onClick={handleOpenDropdown} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-green-800`}>
               <div className='flex'>
@@ -56,9 +56,9 @@ export const UserContainer = () => {
                 </li>
               </ul>
             </div>
-            </>
+          </>
       }
-      <UserModal open={openLogin} setOpen={setOpenLogin} />
+      <UserModalContainer open={openLogin} setOpen={setOpenLogin} />
     </div>
   )
 }

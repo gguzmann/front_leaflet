@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { collection, deleteDoc, doc, getFirestore, setDoc } from 'firebase/firestore'
+import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
 
 const firebaseConfig = {
 
@@ -23,6 +24,12 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
+export const auth = getAuth()
+export const loginGoogle2 = async () => {
+  const googleProvider = await new GoogleAuthProvider()
+  return signInWithPopup(auth, googleProvider)
+}
+export const logout = async () => await signOut(auth)
 
 export const addLocation = async (newLocation, id, nameMap) => {
   const collect = collection(db, nameMap)

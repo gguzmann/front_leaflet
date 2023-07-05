@@ -10,11 +10,8 @@ export const Router = () => {
 
     <Switch>
 
-      <Route path='/login' component={Login} />
       <Route path='/:name' component={App} />
-      <Route path='/:name/dev' component={App} />
-      <Route path='/' component={Home} />
-      <Route component={Mapa} />
+      <Route component={App} />
     </Switch>
   )
 }

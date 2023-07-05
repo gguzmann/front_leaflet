@@ -17,9 +17,9 @@ export const cargaFS = async (path) => {
       arr.push({ ...data, id: element.id })
     }
   })
-  return [arr, config]
-  // if (arr.length > 0) { return [arr, config] }
-  // return false
+  // return [arr, config]
+  if (arr.length > 0) { return [arr, config] }
+  return false
 }
 export const actionType = {
   none: 'none',

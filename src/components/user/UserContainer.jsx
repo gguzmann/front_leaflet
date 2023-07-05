@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useSetting } from '../../store/storeSettings'
-import { userSVG } from '../../svg'
 import { UserModal } from './userModal'
 import { useAuth } from '../../store/auth'
 import { logout } from '../../db/config'

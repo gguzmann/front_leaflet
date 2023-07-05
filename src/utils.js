@@ -2,25 +2,6 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from './db/config'
 import { locationSVG } from './svg'
 
-export const cargaFS = async (path) => {
-  const collectionTest = collection(db, path)
-  const arr = []
-  let config = {}
-  const queryTest = await getDocs(collectionTest)
-  queryTest.forEach(element => {
-    const data = element.data()
-    console.log(data)
-    console.log(element.id)
-    if (element.id === 'config') {
-      config = element.data()
-    } else {
-      arr.push({ ...data, id: element.id })
-    }
-  })
-  // return [arr, config]
-  if (arr.length > 0) { return [arr, config] }
-  return false
-}
 export const actionType = {
   none: 'none',
   locations: 'locations',

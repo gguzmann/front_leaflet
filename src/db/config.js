@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { collection, deleteDoc, doc, getFirestore, setDoc } from 'firebase/firestore'
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore'
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
 
 const firebaseConfig = {
 
@@ -25,10 +25,12 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth()
+
 export const loginGoogle2 = async () => {
   const googleProvider = await new GoogleAuthProvider()
   return signInWithPopup(auth, googleProvider)
 }
+
 export const logout = async () => await signOut(auth)
 
 export const addLocation = async (newLocation, id, nameMap) => {
@@ -50,4 +52,24 @@ export const saveSettings = async (settings, nameMap) => {
 
 export const newMap = async (name, config) => {
   await setDoc(doc(db, name, 'config'), config)
+}
+
+export const cargaFS = async (path) => {
+  const collectionTest = collection(db, path)
+  const arr = []
+  let config = {}
+  const queryTest = await getDocs(collectionTest)
+  queryTest.forEach(element => {
+    const data = element.data()
+    console.log(data)
+    console.log(element.id)
+    if (element.id === 'config') {
+      config = element.data()
+    } else {
+      arr.push({ ...data, id: element.id })
+    }
+  })
+  // return [arr, config]
+  if (arr.length > 0) { return [arr, config] }
+  return false
 }

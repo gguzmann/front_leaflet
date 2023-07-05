@@ -21,7 +21,7 @@ export const UserModal = ({ open, setOpen }) => {
     }
   }
   return (
-    <div className={`w-full z-[1100] fixed justify-center items-center min-h-screen ${open ? 'flex' : 'hidden'}`}>
+    <div className={`w-full z-[1100] absolute justify-center items-center min-h-screen ${open ? 'flex' : 'hidden'}`}>
       <div className='absolute z-[1050] w-full max-w-xs bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
         <div className='flex justify-end'>
           <button type='button' onClick={() => setOpen(false)} className='ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900' data-modal-hide='defaultModal'>

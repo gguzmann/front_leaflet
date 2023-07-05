@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { useSetting } from '../../store/storeSettings'
 import { ButtonLink } from './actions/share/ButtonLink'
 import { ButtonLocation } from './actions/locations/ButtonLocation'
 import { ButtonSetting } from './actions/setting/ButtonSetting'

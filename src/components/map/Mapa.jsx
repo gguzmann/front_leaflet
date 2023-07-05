@@ -23,13 +23,13 @@ export const Mapa = () => {
           <div className='test2' />
           <div className='test' />
         </div>
+        <UserContainer />
         {
           locations?.length > 0 &&
           locations.filter(x => x.title !== '').map((loc, i) => <CustomMarker key={i} marker={loc} />)
         }
         <EventsActions />
       </MapContainer>
-      <UserContainer />
     </div>
 
   )

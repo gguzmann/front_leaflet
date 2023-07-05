@@ -9,7 +9,7 @@ export const UserContainer = () => {
   const { user, email, setLogin } = useAuth()
 
   const { color } = useSetting()
-  const [openLogin, setOpenLogin] = useState(true)
+  const [openLogin, setOpenLogin] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(false)
 
   const handleOpenLogin = () => setOpenLogin(true)
@@ -29,9 +29,9 @@ export const UserContainer = () => {
     <div>
       {
         !user
-          ? <button onClick={handleOpenLogin} className={`fixed right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-opacity-70`}>
+          ? <button onClick={handleOpenLogin} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-opacity-70`}>
             Login
-          </button>
+            </button>
           : <>
             <button onClick={handleOpenDropdown} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-green-800`}>
               <div className='flex'>
@@ -57,7 +57,7 @@ export const UserContainer = () => {
                 </li>
               </ul>
             </div>
-          </>
+            </>
       }
       <UserModal open={openLogin} setOpen={setOpenLogin} />
     </div>

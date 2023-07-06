@@ -5,7 +5,7 @@ import { useStore } from './store/store'
 import { ButtonsFloat } from './components/editar/ButtonsFloat'
 import { useLocation } from 'wouter'
 import { useSetting } from './store/storeSettings'
-import { auth, cargaFS } from './db/config'
+import { auth, cargaFS, loadMaps } from './db/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useAuth } from './store/auth'
 import { ListHome } from './components/home/ListHome'
@@ -17,6 +17,8 @@ function App () {
   const { setLogin, user } = useAuth()
 
   useEffect(() => {
+    console.log(':::::')
+    loadMaps()
     onAuthStateChanged(auth, (us) => {
       if (us) {
         console.log(us.email)
@@ -46,15 +48,15 @@ function App () {
     <>
       <div className='flex flex-row max-h-screen overflow-hidden bg-white'>
         <div className='basis-1/4 shadow-4xl p-1'>
-          {/* <ListaContainer /> */}
-          <ListHome />
+          <ListaContainer />
+          {/* <ListHome /> */}
         </div>
         <div className='basis-3/4'>
           <Mapa />
           {dev && <ButtonsFloat />}
-
         </div>
       </div>
+
     </>
   )
 }

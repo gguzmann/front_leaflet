@@ -54,6 +54,14 @@ export const newMap = async (name, config) => {
   await setDoc(doc(db, name, 'config'), config)
 }
 
+export const loadMaps = async () => {
+  const collectionMaps = collection(db, 'EVENTS_COLLECTION')
+  const ref = await getDocs(collectionMaps)
+  ref.forEach(element => {
+    console.log(element.data())
+  })
+}
+
 export const cargaFS = async (path) => {
   const collectionTest = collection(db, path)
   const arr = []

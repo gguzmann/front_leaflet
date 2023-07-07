@@ -20,7 +20,8 @@ export const ListHome = () => {
         color,
         title: 'Title',
         layer,
-        center: [-33.461806983280546, -70.66894818450416, 12]
+        center: [-33.461806983280546, -70.66894818450416, 12],
+        email
       })
       await saveListMap(id, email)
       setLocation('/' + id)

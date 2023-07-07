@@ -14,7 +14,7 @@ function App () {
   const { setLocations, setDev, dev } = useStore()
   const [params, setLocation] = useLocation()
   const { setSettings, setName, name } = useSetting()
-  const { setLogin, user } = useAuth()
+  const { setLogin, user, email } = useAuth()
 
   useEffect(() => {
     console.log(':::::')
@@ -30,8 +30,7 @@ function App () {
     })
     const name = params.split('/')[1] || 'home'
     setName(name)
-    console.log('NAME:', name)
-    user ? setDev(true) : setDev(false)
+    // user ? setDev(true) : setDev(false)
 
     cargaFS(name).then(locs => {
       console.log({ locs })
@@ -40,6 +39,8 @@ function App () {
         setLocations(locs[0])
         setSettings(locs[1])
         console.log('config', locs[1])
+        email === locs[1].email ? setDev(true) : setDev(false)
+        console.log('dev', email, locs[1].email)
       } else {
         setSettings({
           title: '',
@@ -50,6 +51,7 @@ function App () {
           zoomControl: true
         })
         setLocations([])
+        setLocation('/')
       }
     }).catch(e => console.log('error'))
   }, [user, params, setLocation])

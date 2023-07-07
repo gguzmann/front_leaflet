@@ -98,6 +98,6 @@ export const cargaFS = async (path) => {
     }
   })
   // return [arr, config]
-  if (arr.length > 0) { return [arr, config] }
+  if (Object.keys(config).length > 0) { return [arr, config] }
   return false
 }

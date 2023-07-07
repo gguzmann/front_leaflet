@@ -1,7 +1,6 @@
 import { ButtonLink } from './actions/share/ButtonLink'
 import { ButtonLocation } from './actions/locations/ButtonLocation'
 import { ButtonSetting } from './actions/setting/ButtonSetting'
-import { ButtonLayer } from './actions/layers/ButtonLayer'
 import { ButtonCenterPosition } from './actions/centerPosition/ButtonCenterPosition'
 import { actionType } from '../../utils'
 
@@ -15,7 +14,7 @@ export const ButtonsFloat = () => {
           <ButtonLocation action={actionType.locations} />
           <ButtonLink action={actionType.link} />
           <ButtonSetting action={actionType.config} />
-          <ButtonLayer action={actionType.layer} />
+          {/* <ButtonLayer action={actionType.layer} /> */}
           <ButtonCenterPosition action={actionType.centerPosition} />
         </div>
       </div>

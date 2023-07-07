@@ -13,7 +13,7 @@ import { ListHome } from './components/home/ListHome'
 function App () {
   const { setLocations, setDev, dev } = useStore()
   const [params, setLocation] = useLocation()
-  const { setSettings, setName, title } = useSetting()
+  const { setSettings, setName, name } = useSetting()
   const { setLogin, user } = useAuth()
 
   useEffect(() => {
@@ -40,20 +40,33 @@ function App () {
         setLocations(locs[0])
         setSettings(locs[1])
         console.log('config', locs[1])
+      } else {
+        setSettings({
+          title: '',
+          color: 'bg-sky-700',
+          layer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          center: [-33.461806983280546, -70.66894818450416, 12],
+          draggin: true,
+          zoomControl: true
+        })
+        setLocations([])
       }
     }).catch(e => console.log('error'))
-  }, [user])
+  }, [user, params, setLocation])
 
   return (
     <>
       <div className='flex flex-row max-h-screen overflow-hidden bg-white'>
         <div className='basis-1/4 shadow-4xl p-1'>
-          <ListaContainer />
-          {/* <ListHome /> */}
+          {
+            name === 'home'
+              ? <ListHome />
+              : <ListaContainer />
+          }
         </div>
         <div className='basis-3/4'>
           <Mapa />
-          {dev && <ButtonsFloat />}
+          {dev && name !== 'home' && <ButtonsFloat />}
         </div>
       </div>
 

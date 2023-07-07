@@ -8,7 +8,7 @@ export const SettingConfig = () => {
   const [loading, setLoading] = useState(false)
   const { centerPosition } = useStoreEdited()
 
-  const { color, title, name, center, draggin, zoomControl } = useSetting()
+  const { color, title, name, center, layer, draggin, zoomControl } = useSetting()
 
   const handleSaveSetting = async () => {
     console.log(title, color)
@@ -18,6 +18,7 @@ export const SettingConfig = () => {
       color,
       center: centerPosition.length > 0 ? centerPosition : center,
       draggin,
+      layer,
       zoomControl
     }, name)
     setLoading(false)

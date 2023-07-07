@@ -1,8 +1,9 @@
 import { useSetting } from '../../../store/storeSettings'
 import { colors } from '../../../utils'
+import { SettingLayer } from '../actions/layers/SettingLayer'
 
 export const GeneralSettings = () => {
-  const { setColor, color, setTitle, title, draggin, setDraggin, zoomControl, setZoomControl } = useSetting()
+  const { setColor, color, setTitle, title } = useSetting()
 
   const handleChangeTitle = (e) => {
     setTitle(e.target.value)
@@ -25,6 +26,7 @@ export const GeneralSettings = () => {
         </div>
       </div>
 
+      <SettingLayer />
       {/* <div className='mb-6 flex items-center'>
         <label htmlFor='default-input' className=' w-1/4 block mb-2 text-sm font-medium text-gray-900'>Drag:</label>
         <label className='relative inline-flex items-center mb-2 cursor-pointer'>

@@ -1,9 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSetting } from '../../store/storeSettings'
-import { actionType } from '../../utils'
+import { actionType, uidMap } from '../../utils'
 import { EditLocation } from '../editar/actions/newLocation/EditLocation'
+import { useAuth } from '../../store/auth'
+import { getAllMaps, newMap2, saveListMap } from '../../db/config'
+import { useLocation } from 'wouter'
 export const ListHome = () => {
-  const { color, setting } = useSetting()
+  const [, setLocation] = useLocation()
+
+  const { setting, color, layer } = useSetting()
+  const { email, user } = useAuth()
+
+  const [maps, setMaps] = useState([])
+
+  const handleNewMap = async () => {
+    try {
+      const id = uidMap()
+      await newMap2(id, {
+        color,
+        title: 'Title',
+        layer,
+        center: [-33.461806983280546, -70.66894818450416, 12]
+      })
+      await saveListMap(id, email)
+      setLocation('/' + id)
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
+  useEffect(() => {
+    getAllMaps().then(maps => setMaps(maps))
+  }, [])
+
+  const handleGotoMap = (nameMap) => {
+    setLocation('/' + nameMap)
+  }
+
   return (
     <div>
       <div className='bg-white shadow-md'>
@@ -12,7 +45,24 @@ export const ListHome = () => {
         </div>
 
         <div className='overflow-y-scroll max-h-screen'>
+          {
+            user &&
+              <div onClick={handleNewMap} className='p-2 text-slate-500 hover:text-black cursor-pointer  hover:shadow '>
+                <div className='flex justify-center gap-5 items-center'>
+                  <p className='font-bold '>New Map</p>
+                  <i className='far fa-plus-square text-3xl' />
+                </div>
+              </div>
+          }
 
+          {
+            maps.length > 0 &&
+            maps.map(x =>
+              <div key={x}>
+                <button onClick={() => handleGotoMap(x)}>{x}</button>
+              </div>
+            )
+          }
           {setting === actionType.editLocation && <EditLocation />}
 
         </div>

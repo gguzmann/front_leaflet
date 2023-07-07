@@ -1,5 +1,3 @@
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from './db/config'
 import { locationSVG } from './svg'
 
 export const actionType = {
@@ -11,6 +9,12 @@ export const actionType = {
   newLocation: 'newLocation',
   editLocation: 'editLocation',
   link: 'link'
+}
+
+export const uidMap = () => {
+  const caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const codigo = new Array(10).fill().map(x => caracteres[Math.floor(Math.random() * caracteres.length)]).join('')
+  return codigo
 }
 
 export const buttonsEvents = [

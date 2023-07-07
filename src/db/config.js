@@ -54,6 +54,26 @@ export const newMap = async (name, config) => {
   await setDoc(doc(db, name, 'config'), config)
 }
 
+export const newMap2 = async (id, obj) => {
+  await setDoc(doc(db, id, 'config'), obj)
+}
+
+export const saveListMap = async (id, user) => {
+  await setDoc(doc(db, 'mapas', id), { user })
+}
+
+export const getAllMaps = async () => {
+  const collectionMaps = collection(db, 'mapas')
+  const ref = await getDocs(collectionMaps)
+  const arr = []
+  ref.forEach(map => {
+    console.log(map.data())
+    arr.push(map.id)
+  })
+
+  return arr
+}
+
 export const loadMaps = async () => {
   const collectionMaps = collection(db, 'EVENTS_COLLECTION')
   const ref = await getDocs(collectionMaps)

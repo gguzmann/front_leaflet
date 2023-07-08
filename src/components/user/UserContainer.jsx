@@ -44,13 +44,13 @@ export const UserContainer = () => {
             </button>
             <div className={`${openDropdown ? 'absolute' : 'hidden'} right-2 top-12 z-[1250] bg-white divide-y divide-gray-100 rounded-lg shadow w-44`}>
               <ul className='text-sm text-gray-700 ' aria-labelledby='dropdownDefaultButton'>
+                <li>
+                  <button className=' px-4 py-2 rounded-lg hover:bg-gray-100 w-full '>My Maps</button>
+                </li>
+                <li>
+                  <button className=' px-4 py-2 hover:bg-gray-100 w-full '>New Map</button>
+                </li>
                 {/* <li>
-                  <button className=' px-4 py-2 hover:bg-gray-100 w-full '>Dashboard</button>
-                </li>
-                <li>
-                  <button className=' px-4 py-2 hover:bg-gray-100 w-full '>Settings</button>
-                </li>
-                <li>
                   <button className=' px-4 py-2 hover:bg-gray-100 w-full '>Earnings</button>
                 </li> */}
                 <li>

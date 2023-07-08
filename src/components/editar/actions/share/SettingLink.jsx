@@ -7,13 +7,8 @@ export const SettingLink = () => {
 
   const handleCopy = () => {
     const link = window.location.href
-    navigator.clipboard.writeText(link.slice(0, link.length - 4))
+    navigator.clipboard.writeText(link)
     setCopy(true)
-  }
-
-  const handleOpen = () => {
-    const link = window.location.href
-    window.open(link.slice(0, link.length - 4))
   }
 
   return (
@@ -34,9 +29,7 @@ export const SettingLink = () => {
         <button onClick={handleCopy} className={`my-2 ${color || 'bg-sky-700'} bg-opacity-80 text-white font-bold py-2 px-4 rounded w-20`}>
           {copy ? 'copied' : <i className='far fa-clone' />}
         </button>
-        <button onClick={handleOpen} className={`my-2 ${color || 'bg-sky-700'} bg-opacity-80 text-white font-bold py-2 px-4 rounded w-20`}>
-          Go
-        </button>
+
       </div>
 
     </div>

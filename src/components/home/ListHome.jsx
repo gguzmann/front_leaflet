@@ -8,7 +8,7 @@ import { useLocation } from 'wouter'
 export const ListHome = () => {
   const [, setLocation] = useLocation()
 
-  const { setting, color, layer } = useSetting()
+  const { setting, color } = useSetting()
   const { email, user } = useAuth()
 
   const [maps, setMaps] = useState([])

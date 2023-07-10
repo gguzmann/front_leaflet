@@ -27,7 +27,7 @@ export const CardList = ({ loc }) => {
   }
 
   return (
-    <div onClick={handleClick} className={`hover:border-l-4 hover:border-slate-500 hover:shadow ${currentLoc.id === loc.id ? `${color} bg-opacity-10 hover:${color} hover:bg-opacity-10` : 'hover:bg-black hover:bg-opacity-10'}`}>
+    <div onClick={handleClick} className={`h-[100px] hover:border-l-4 hover:border-slate-500 hover:shadow ${currentLoc.id === loc.id ? `${color} bg-opacity-10 hover:${color} hover:bg-opacity-10` : 'hover:bg-black hover:bg-opacity-10'}`}>
       <div className='flex'>
         <div className='px-5 pt-5 basis-3/4'>
           <p className='text-lg font-bold'>{loc.title}</p>
@@ -41,11 +41,10 @@ export const CardList = ({ loc }) => {
       }
         </div>
         <div className='p-2 basis-2/4 flex items-center'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='hidden lg:flex' />
+          <img src={loc.img ? loc.img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU'} alt='' className='hidden lg:flex' />
         </div>
       </div>
 
-      <hr />
     </div>
   )
 }

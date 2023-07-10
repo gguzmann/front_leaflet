@@ -45,21 +45,26 @@ export const deleteLocation = async (id, name) => {
 }
 
 export const saveSettings = async (settings, nameMap) => {
+  console.log(settings)
+  console.log(nameMap)
   const collectionSetting = collection(db, nameMap)
   const docRef = doc(collectionSetting, 'config')
   await setDoc(docRef, settings, { merge: true })
+  await setDoc(doc(db, 'mapas', nameMap), { title: settings.title }, { merge: true })
 }
 
-export const newMap = async (name, config) => {
-  await setDoc(doc(db, name, 'config'), config)
+export const newMap2 = async (id, user) => {
+  const obj = {
+    title: 'Title',
+    center: [-33.461806983280546, -70.66894818450416, 12],
+    email: user,
+    id
+  }
+  await setDoc(doc(db, id, 'config'), obj, { merge: true })
 }
 
-export const newMap2 = async (id, obj) => {
-  await setDoc(doc(db, id, 'config'), obj)
-}
-
-export const saveListMap = async (id, user) => {
-  await setDoc(doc(db, 'mapas', id), { user })
+export const saveListNewMap = async (id, user) => {
+  await setDoc(doc(db, 'mapas', id), { user, title: 'Title' })
 }
 
 export const getAllMaps = async () => {
@@ -68,9 +73,9 @@ export const getAllMaps = async () => {
   const arr = []
   ref.forEach(map => {
     console.log(map.data())
-    arr.push(map.id)
+    arr.push({ ...map.data(), id: map.id })
   })
-
+  console.log(arr)
   return arr
 }
 

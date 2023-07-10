@@ -14,3 +14,17 @@ export const icons = [
   'https://img.icons8.com/?size=512&id=49261&format=png'
 
 ]
+
+export const iconsNumber = [
+
+  'https://img.icons8.com/?size=512&id=100049&format=png',
+  'https://img.icons8.com/?size=512&id=14531&format=png',
+  'https://img.icons8.com/?size=512&id=14536&format=png',
+  'https://img.icons8.com/?size=512&id=14530&format=png',
+  'https://img.icons8.com/?size=512&id=14533&format=png',
+  'https://img.icons8.com/?size=512&id=102967&format=png',
+  'https://img.icons8.com/?size=512&id=14532&format=png',
+  'https://img.icons8.com/?size=512&id=14528&format=png',
+  'https://img.icons8.com/?size=512&id=14537&format=png',
+  'https://img.icons8.com/?size=512&id=14523&format=png'
+]

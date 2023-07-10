@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useStoreEdited } from '../../../../store/storeEdit'
 import { useSetting } from '../../../../store/storeSettings'
 import { addLocation } from '../../../../db/config'
 import { useStore } from '../../../../store/store'
 import { actionType } from '../../../../utils'
-import { icons } from '../../../../icons'
+import { DropdownIcon } from './DropdownIcon'
+import { UploadImage } from './UploadImage'
 
 const initForm = {
   title: '',
@@ -17,6 +18,7 @@ export const EditLocation = () => {
   const { locations, setLocations } = useStore()
   const { color, name, setSetting } = useSetting()
 
+  const [url, setUrl] = useState('')
   const [loading, setLoading] = useState(false)
   const [formObject, setFormObject] = useState(initForm)
   const [buttonIcon, setButtonIcon] = useState(false)
@@ -42,7 +44,8 @@ export const EditLocation = () => {
       ...currentLoc,
       title: formObject.title !== '' ? formObject.title : currentLoc.title,
       description: formObject.description !== '' ? formObject.description : currentLoc.description,
-      icons: formObject.icons !== '' ? formObject.icons : 'https://img.icons8.com/?size=512&id=7880&format=png'
+      icons: formObject.icons !== '' ? formObject.icons : 'https://img.icons8.com/?size=512&id=7880&format=png',
+      img: url
     }
     setLocations(locations.map(x => {
       if (x.id === currentLoc.id) {
@@ -72,7 +75,6 @@ export const EditLocation = () => {
       icons: icon
     })
   }
-
   return (
     <div className='animate__animated animate__fadeInDown p-3 min-h-screen'>
       <h3 className='text-xl font-medium text-gray-900 mb-6'>
@@ -94,9 +96,9 @@ export const EditLocation = () => {
           </label>
           <input onChange={handleChangeInput} value={formObject.description} name='description' id='description' type='text' placeholder={currentLoc.description ? currentLoc.description : 'description'} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
         </div>
-
+        <UploadImage setUrl={setUrl} />
         <div className='py-2 flex justify-center'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='lg:flex' />
+          <img src={`${!currentLoc.img ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' : currentLoc.img}`} alt='' className='lg:flex' />
         </div>
 
         <div className='my-4 flex items-center'>
@@ -105,26 +107,16 @@ export const EditLocation = () => {
           </label>
           <button
             onClick={() => setButtonIcon(!buttonIcon)}
-            id='dropdownDefaultButton' className='  hover:bg-black  hover:bg-opacity-20 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm  text-center inline-flex items-center
+            id='dropdownDefaultButton' className=' p-2 border hover:bg-black  hover:bg-opacity-20 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm  text-center inline-flex items-center
       ' type='button'
           >
-            <img src={formObject.icons === '' ? currentLoc.icons : formObject.icons} alt='' width={30} />
+            <img src={formObject.icons === '' ? currentLoc.icons : formObject.icons} alt='' width={20} />
             <svg className='w-4 h-4 ml-2' aria-hidden='true' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 9l-7 7-7-7' /></svg>
           </button>
         </div>
 
         <div id='dropdown' className={`z-10 ${!buttonIcon && 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-4/4 `}>
-          <ul className='flex flex-wrap py-2 text-sm text-gray-700 d' aria-labelledby='dropdownDefaultButton'>
-            {
-            icons.map((icon, i) =>
-              <li key={i}>
-                <div onClick={() => handleSelectIcon(icon)} className='flex justify-center cursor-pointer items-center px-4 py-2 hover:bg-gray-100'>
-                  <img src={icon} alt='' width={30} />
-                </div>
-              </li>)
-          }
-
-          </ul>
+          <DropdownIcon handleSelectIcon={handleSelectIcon} />
         </div>
 
         <button type='submit' className={`flex gap-3 items-center justify-center ${color || 'bg-sky-700'} hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded w-full`}>

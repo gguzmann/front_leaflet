@@ -3,7 +3,7 @@ import { useSetting } from '../../store/storeSettings'
 import { actionType, uidMap } from '../../utils'
 import { EditLocation } from '../editar/actions/newLocation/EditLocation'
 import { useAuth } from '../../store/auth'
-import { getAllMaps, newMap2, saveListMap } from '../../db/config'
+import { getAllMaps, newMap2, saveListNewMap } from '../../db/config'
 import { useLocation } from 'wouter'
 export const ListHome = () => {
   const [, setLocation] = useLocation()
@@ -16,14 +16,8 @@ export const ListHome = () => {
   const handleNewMap = async () => {
     try {
       const id = uidMap()
-      await newMap2(id, {
-        color,
-        title: 'Title',
-        layer,
-        center: [-33.461806983280546, -70.66894818450416, 12],
-        email
-      })
-      await saveListMap(id, email)
+      await newMap2(id, email)
+      await saveListNewMap(id, email)
       setLocation('/' + id)
     } catch (error) {
       console.log('error')
@@ -59,8 +53,8 @@ export const ListHome = () => {
           {
             maps.length > 0 &&
             maps.map(x =>
-              <div key={x}>
-                <button onClick={() => handleGotoMap(x)}>{x}</button>
+              <div key={x.id} onClick={() => handleGotoMap(x.id)} className='min-h-[100px] shadow flex items-center justify-center cursor-pointer hover:border-l-4 hover:border-slate-500 hover:shadow  bg-opacity-10 hover: hover:bg-opacity-10'>
+                {x.title}
               </div>
             )
           }

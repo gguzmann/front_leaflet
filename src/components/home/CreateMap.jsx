@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { GeneralSettings } from '../editar/settings/GeneralSettings'
 import { LayerSettings } from '../editar/settings/LayerSettings'
 import { useSetting } from '../../store/storeSettings'
-import { newMap } from '../../db/config'
 import logo from '../../assets/logo.png'
 export const CreateMap = () => {
   const [count, setCount] = useState(0)
@@ -27,15 +26,7 @@ export const CreateMap = () => {
     console.log(color, title, layer)
     if (count === 2) {
       setLoading(true)
-      await newMap(title.split(' ').join('_').toLowerCase(), {
-        color,
-        title,
-        layer,
-        draggin,
-        zoomControl,
-        center: [-33.461806983280546, -70.66894818450416, 12]
 
-      })
       window.location.href = '/' + title.split(' ').join('_').toLowerCase() + '/dev'
 
       // setLocation('/' + title.split(' ').join('_').toLowerCase() + '/dev')

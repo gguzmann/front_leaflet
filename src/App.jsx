@@ -51,7 +51,7 @@ function App () {
           zoomControl: true
         })
         setLocations([])
-        setLocation('/')
+        setLocation('/  ')
       }
     }).catch(e => console.log('error'))
   }, [user, params, setLocation])

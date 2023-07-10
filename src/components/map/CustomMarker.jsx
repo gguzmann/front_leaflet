@@ -49,7 +49,7 @@ export const CustomMarker = ({ marker }) => {
                     </div>
 
                     <div className='py-2'>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' alt='' className='lg:flex' />
+                      <img src={marker.img} alt='' className='lg:flex' />
                     </div>
 
                   </div>

@@ -24,8 +24,8 @@ export const useSetting = create((set) => ({
   setLayer: (value) => set(state => ({ layer: value })),
   setSettings: (value) => set(state => ({
     title: value.title,
-    color: value.color,
-    layer: value.layer,
+    color: value.color || 'bg-sky-700',
+    layer: value.layer || 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     center: value.center,
     draggin: value.draggin,
     zoomControl: value.zoomControl

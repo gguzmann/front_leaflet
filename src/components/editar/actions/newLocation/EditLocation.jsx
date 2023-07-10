@@ -10,7 +10,8 @@ import { UploadImage } from './UploadImage'
 const initForm = {
   title: '',
   description: '',
-  icons: ''
+  icons: '',
+  img: ''
 }
 
 export const EditLocation = () => {
@@ -45,7 +46,7 @@ export const EditLocation = () => {
       title: formObject.title !== '' ? formObject.title : currentLoc.title,
       description: formObject.description !== '' ? formObject.description : currentLoc.description,
       icons: formObject.icons !== '' ? formObject.icons : 'https://img.icons8.com/?size=512&id=7880&format=png',
-      img: url
+      img: url !== '' ? url : currentLoc.img ? currentLoc.img : ''
     }
     setLocations(locations.map(x => {
       if (x.id === currentLoc.id) {
@@ -96,9 +97,13 @@ export const EditLocation = () => {
           </label>
           <input onChange={handleChangeInput} value={formObject.description} name='description' id='description' type='text' placeholder={currentLoc.description ? currentLoc.description : 'description'} className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' />
         </div>
-        <UploadImage setUrl={setUrl} />
+        <UploadImage setUrl={setUrl} setFormObject={setFormObject} formObject={formObject} />
         <div className='py-2 flex justify-center'>
-          <img src={`${!currentLoc.img ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' : currentLoc.img}`} alt='' className='lg:flex' />
+          {
+            currentLoc.img
+              ? <img src={url === '' ? currentLoc.img : url} alt='' className='lg:flex' />
+              : <img src={`${url === '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiKeMxWylWa9X7J859YdKx5r6XE1q45o7-jmnZ9p5xhNMRwrk6qICM0FZO8u7JOnR-F3M&usqp=CAU' : url}`} alt='' className='lg:flex' />
+          }
         </div>
 
         <div className='my-4 flex items-center'>

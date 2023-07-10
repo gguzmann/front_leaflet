@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export const UploadImage = ({ setUrl }) => {
+export const UploadImage = ({ setUrl, setFormObject, formObject }) => {
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
   useEffect(() => {
@@ -13,6 +13,7 @@ export const UploadImage = ({ setUrl }) => {
       if (!error && result && result.event === 'success') {
         console.log('img subida correctamente')
         setUrl(result.info.secure_url)
+        setFormObject({ ...formObject, img: result.secure_url })
       }
     })
   }, [])

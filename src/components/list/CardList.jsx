@@ -27,7 +27,7 @@ export const CardList = ({ loc }) => {
   }
 
   return (
-    <div onClick={handleClick} className={`h-[100px] hover:border-l-4 hover:border-slate-500 hover:shadow ${currentLoc.id === loc.id ? `${color} bg-opacity-10 hover:${color} hover:bg-opacity-10` : 'hover:bg-black hover:bg-opacity-10'}`}>
+    <div onClick={handleClick} className={`h-[100px] overflow-hidden hover:border-l-4 hover:border-slate-500 hover:shadow ${currentLoc.id === loc.id ? `${color} bg-opacity-10 hover:${color} hover:bg-opacity-10` : 'hover:bg-black hover:bg-opacity-10'}`}>
       <div className='flex'>
         <div className='px-5 pt-5 basis-3/4'>
           <p className='text-lg font-bold'>{loc.title}</p>

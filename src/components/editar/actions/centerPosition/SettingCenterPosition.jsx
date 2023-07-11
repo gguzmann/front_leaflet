@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useStoreEdited } from '../../../../store/storeEdit'
 import { useSetting } from '../../../../store/storeSettings'
-import { saveSettings } from '../../../../db/config'
+import { saveCenterPosition } from '../../../../db/config'
 import { useStore } from '../../../../store/store'
 
 export const SettingCenterPosition = () => {
@@ -13,7 +13,7 @@ export const SettingCenterPosition = () => {
   const handleSaveSetting = async () => {
     setCenter([centerPosition[0], centerPosition[1], centerPosition[2]])
     setLoading(true)
-    await saveSettings({
+    await saveCenterPosition({
       center: centerPosition.length > 0 ? centerPosition : center
     }, name)
     setLoading(false)

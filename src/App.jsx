@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { ListaContainer } from './components/list/ListaContainer'
 import { Mapa } from './components/map/Mapa'
 import { useStore } from './store/store'
@@ -9,12 +9,14 @@ import { auth, cargaFS, loadMaps } from './db/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useAuth } from './store/auth'
 import { ListHome } from './components/home/ListHome'
+import { UserModalContainer } from './components/user/UserModalContainer'
 
 function App () {
   const { setLocations, setDev, dev } = useStore()
   const [params, setLocation] = useLocation()
   const { setSettings, setName, name } = useSetting()
   const { setLogin, user, email } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     console.log(':::::')
@@ -40,7 +42,8 @@ function App () {
         setSettings(locs[1])
         console.log('config', locs[1])
         email === locs[1].email ? setDev(true) : setDev(false)
-        console.log('dev', email, locs[1].email)
+        console.log('CENTER', locs[1].center)
+        setIsLoading(true)
       } else {
         setSettings({
           title: '',
@@ -58,6 +61,7 @@ function App () {
 
   return (
     <>
+      <UserModalContainer />
       <div className='flex flex-row max-h-screen overflow-hidden bg-white'>
         <div className='basis-1/4 shadow-4xl p-1'>
           {
@@ -67,8 +71,9 @@ function App () {
           }
         </div>
         <div className='basis-3/4'>
-          <Mapa />
+          {isLoading && <Mapa />}
           {dev && name !== 'home' && <ButtonsFloat />}
+
         </div>
       </div>
 

@@ -2,16 +2,14 @@ import { useState } from 'react'
 import { useSetting } from '../../store/storeSettings'
 import { useAuth } from '../../store/auth'
 import { logout } from '../../db/config'
-import { UserModalContainer } from './UserModalContainer'
+import { actionType } from '../../utils'
 
 export const UserContainer = () => {
   const { user, setLogin } = useAuth()
-
-  const { color } = useSetting()
-  const [openLogin, setOpenLogin] = useState(false)
+  const { color, setSetting, openSetting } = useSetting()
   const [openDropdown, setOpenDropdown] = useState(false)
 
-  const handleOpenLogin = () => setOpenLogin(true)
+  const handleOpenLogin = () => openSetting()
   const handleOpenDropdown = () => setOpenDropdown(!openDropdown)
 
   const handleLogout = async () => {
@@ -19,6 +17,7 @@ export const UserContainer = () => {
       await logout()
       setLogin(false, { email: '' })
       console.log('user logout')
+      setSetting(actionType.locations)
     } catch (error) {
       console.log('error logout')
     }
@@ -60,7 +59,6 @@ export const UserContainer = () => {
             </div>
           </>
       }
-      <UserModalContainer open={openLogin} setOpen={setOpenLogin} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc } from 'firebase/firestore'
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 
 const firebaseConfig = {
 
@@ -51,6 +51,12 @@ export const saveSettings = async (settings, nameMap) => {
   const docRef = doc(collectionSetting, 'config')
   await setDoc(docRef, settings, { merge: true })
   await setDoc(doc(db, 'mapas', nameMap), { title: settings.title }, { merge: true })
+}
+
+export const saveCenterPosition = async (pos, nameMap) => {
+  const collectionSetting = collection(db, nameMap)
+  const docRef = doc(collectionSetting, 'config')
+  await setDoc(docRef, pos, { merge: true })
 }
 
 export const newMap2 = async (id, user) => {
@@ -105,4 +111,12 @@ export const cargaFS = async (path) => {
   // return [arr, config]
   if (Object.keys(config).length > 0) { return [arr, config] }
   return false
+}
+
+export const singup = async (email, password) => {
+  await createUserWithEmailAndPassword(auth, email, password)
+}
+
+export const singin = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password)
 }

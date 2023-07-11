@@ -19,7 +19,7 @@ export const CardContainer = () => {
       {
       dev &&
         <>
-          <div onClick={handleNewPosition} className='p-2 text-slate-500 hover:text-black cursor-pointer  hover:shadow '>
+          <div onClick={handleNewPosition} className='p-2  text-slate-500 hover:text-black cursor-pointer  hover:shadow '>
             <div className='flex justify-center gap-5 items-center'>
               <p className='font-bold '>New Position</p>
               <i className='far fa-plus-square text-3xl' />
@@ -28,10 +28,15 @@ export const CardContainer = () => {
           <hr />
         </>
       }
-      {
-            locations.length > 0 &&
-            locations?.filter(x => x.title !== '').map((card, i) => <CardList key={i} loc={card} />)
-          }
+      <div className='min-h-screen'>
+
+        {
+        locations.length > 0 &&
+        locations?.filter(x => x.title !== '').map((card, i) => <CardList key={i} loc={card} />)
+      }
+
+      </div>
+      <div className='h-[100px]' />
     </>
   )
 }

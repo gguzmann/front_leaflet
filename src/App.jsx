@@ -12,7 +12,7 @@ import { ListHome } from './components/home/ListHome'
 import { UserModalContainer } from './components/user/UserModalContainer'
 
 function App () {
-  const { setLocations, setDev, dev } = useStore()
+  const { setLocations, setDev, dev, mapa } = useStore()
   const [params, setLocation] = useLocation()
   const { setSettings, setName, name } = useSetting()
   const { setLogin, user, email } = useAuth()
@@ -44,12 +44,13 @@ function App () {
         email === locs[1].email ? setDev(true) : setDev(false)
         console.log('CENTER', locs[1].center)
         setIsLoading(true)
+        mapa.target.flyTo([locs[1].center[0], locs[1].center[1]], locs[1].center[2])
       } else {
         setSettings({
           title: '',
           color: 'bg-sky-700',
           layer: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          center: [-33.461806983280546, -70.66894818450416, 12],
+          center: [52.26815737376817, 5.273437500000001, 2],
           draggin: true,
           zoomControl: true
         })

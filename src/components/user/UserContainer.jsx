@@ -3,11 +3,13 @@ import { useSetting } from '../../store/storeSettings'
 import { useAuth } from '../../store/auth'
 import { logout } from '../../db/config'
 import { actionType } from '../../utils'
+import { useLocation } from 'wouter'
 
 export const UserContainer = () => {
   const { user, setLogin } = useAuth()
   const { color, setSetting, openSetting } = useSetting()
   const [openDropdown, setOpenDropdown] = useState(false)
+  const [, setLocation] = useLocation()
 
   const handleOpenLogin = () => openSetting()
   const handleOpenDropdown = () => setOpenDropdown(!openDropdown)
@@ -25,13 +27,18 @@ export const UserContainer = () => {
 
   return (
     <div>
+      <button onClick={() => setLocation('/')} className={`absolute ${user ? 'right-20' : 'right-28'} top-2 z-[1050]  ${color} h-[35px] rounded text-white font-bold px-4 hover:bg-opacity-70`}>
+        <svg className='w-5 h-5 text-gray-800 dark:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'>
+          <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9' />
+        </svg>
+      </button>
       {
         !user
-          ? <button onClick={handleOpenLogin} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-8 hover:bg-opacity-70`}>
+          ? <button onClick={handleOpenLogin} className={`absolute right-2 top-2 z-[1050] h-[35px] p-2 ${color} rounded text-white font-bold px-8 hover:bg-opacity-70`}>
             Login
-          </button>
+            </button>
           : <>
-            <button onClick={handleOpenDropdown} className={`absolute right-2 top-2 z-[1050] p-2 ${color} rounded text-white font-bold px-4 hover:bg-green-800`}>
+            <button onClick={handleOpenDropdown} className={`absolute right-2 top-2 h-[35px] z-[1050] py-2 ${color} rounded text-white font-bold px-4 hover:bg-opacity-70`}>
               <div className='flex'>
                 <svg className='w-4 h-4 text-gray-800 dark:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 14 18'>
                   <path d='M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z' />
@@ -57,7 +64,7 @@ export const UserContainer = () => {
                 </li>
               </ul>
             </div>
-          </>
+            </>
       }
     </div>
   )

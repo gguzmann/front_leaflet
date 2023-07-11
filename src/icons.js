@@ -28,3 +28,9 @@ export const iconsNumber = [
   'https://img.icons8.com/?size=512&id=14537&format=png',
   'https://img.icons8.com/?size=512&id=14523&format=png'
 ]
+
+export const iconShapes = [
+  'https://img.icons8.com/?size=512&id=JYRTmcgc4aTi&format=png',
+  'https://img.icons8.com/?size=512&id=1Ir12vECQRCN&format=png',
+  'https://img.icons8.com/?size=512&id=93782&format=png'
+]

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { icons, iconsNumber } from '../../../../icons'
+import { iconShapes, icons, iconsNumber } from '../../../../icons'
 
 export const DropdownIcon = ({ handleSelectIcon }) => {
   const [category, setCategory] = useState(0)
@@ -26,6 +26,15 @@ export const DropdownIcon = ({ handleSelectIcon }) => {
           </button>
         </li>
 
+        <li>
+          <button
+            onClick={() => setCategory(2)}
+            className=' block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent'
+            type='button'
+          >Shapes
+          </button>
+        </li>
+
       </ul>
 
       <div className='mb-6'>
@@ -46,6 +55,16 @@ export const DropdownIcon = ({ handleSelectIcon }) => {
             {
                 category === 1 &&
                     iconsNumber.map((icon, i) =>
+                      <li key={i}>
+                        <div onClick={() => handleSelectIcon(icon)} className='flex justify-center cursor-pointer items-center px-4 py-2 hover:bg-gray-100'>
+                          <img src={icon} alt='' width={30} />
+                        </div>
+                      </li>)
+            }
+
+            {
+                category === 2 &&
+                    iconShapes.map((icon, i) =>
                       <li key={i}>
                         <div onClick={() => handleSelectIcon(icon)} className='flex justify-center cursor-pointer items-center px-4 py-2 hover:bg-gray-100'>
                           <img src={icon} alt='' width={30} />

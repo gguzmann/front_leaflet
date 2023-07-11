@@ -12,7 +12,7 @@ export const useSetting = create((set) => ({
   setTitle: (value) => set(state => ({ title: value })),
   color: 'bg-sky-700',
   setColor: (value) => set(state => ({ color: value })),
-  center: [-33.461806983280546, -70.66894818450416, 12],
+  center: [52.26815737376817, 5.273437500000001, 2],
   setCenter: (value) => set(state => ({ center: value })),
   draggin: true,
   setDraggin: (value) => set(state => ({ draggin: value })),

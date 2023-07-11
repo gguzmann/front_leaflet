@@ -17,7 +17,7 @@ export const ListaContainer = () => {
         <div className={`${color || 'bg-sky-500'} p-5 text-3xl font-bold text-slate-200`}>
           {title}
         </div>
-        <div className='overflow-y-scroll max-h-screen'>
+        <div className='overflow-y-scroll max-h-screen my-3'>
 
           {setting === actionType.locations && <CardContainer />}
           {setting === actionType.config && <SettingConfig />}

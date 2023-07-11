@@ -7,17 +7,17 @@ import { UserContainer } from '../user/UserContainer'
 
 export const Mapa = () => {
   const locations = useStore(state => state.locations)
-  const { setMapa, dev } = useStore()
-  const { layer, setting, center, zoomControl, draggin } = useSetting()
+  const { setMapa } = useStore()
+  const { layer, setting, center } = useSetting()
 
   return (
     <div>
-      <MapContainer className='map' center={[center[0], center[1]]} dragging={dev || draggin} scrollWheelZoom={dev || zoomControl} zoomControl={false} zoom={center[2]} whenReady={instance => setMapa(instance)}>
+      <MapContainer className='map' center={[center[0], center[1]]} zoomControl={false} zoom={center[2]} whenReady={instance => setMapa(instance)}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url={layer}
         />
-        {zoomControl && <ZoomControl position='bottomright' />}
+        <ZoomControl position='bottomright' />
 
         <div className={`${setting === 'centerPosition' ? 'flex' : 'hidden'} `}>
           <div className='test2' />
